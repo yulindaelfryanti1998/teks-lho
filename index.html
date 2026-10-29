@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MPI Teks Laporan Hasil Observasi — Kelas X Fase E</title>
+<meta name="description" content="Media Pembelajaran Interaktif Bahasa Indonesia: Teks Laporan Hasil Observasi (Kurikulum Berbasis Cinta, Madrasah Aliyah).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink-50:#fff6f9;--pink-100:#ffe9f0;--pink-200:#fdd3e1;--pink-300:#f9b4cc;--rose:#e0709a;--rose-d:#c2527e;
+  --sage-100:#e8f1e5;--sage-200:#d2e3cc;--sage-300:#b2cfab;--sage:#8fae8b;--sage-d:#5f8a62;--sage-dd:#456a49;
+  --ink:#3b2d36;--ink-2:#6b5662;--ok:#3f8f5a;--bad:#d1495b;--warn:#e0a458;
+  --glass:rgba(255,255,255,.66);--glass-b:rgba(255,255,255,.85);
+  --r:22px;--sh:0 10px 30px rgba(194,82,126,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'Nunito','Segoe UI',system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,#ffeaf1 0%,#fff6f9 45%,#e9f2e6 100%);overflow:hidden;font-size:16px;line-height:1.6}
+h1,h2,h3{font-family:'Poppins','Nunito',sans-serif;line-height:1.25}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%}
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.petal{position:absolute;top:-8%;opacity:.7;animation:fall linear infinite;will-change:transform}
+@keyframes fall{0%{transform:translate3d(0,-10vh,0) rotate(0)}50%{transform:translate3d(30px,55vh,0) rotate(180deg)}100%{transform:translate3d(-20px,112vh,0) rotate(360deg)}}
+.screen{position:fixed;inset:0;display:none;overflow-y:auto;overflow-x:hidden;z-index:1;padding:clamp(12px,3vw,28px);padding-bottom:calc(clamp(12px,3vw,28px) + env(safe-area-inset-bottom))}
+.screen.active{display:block;animation:fadeIn .5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.wrap{max-width:1040px;margin:0 auto}
+.glass{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--glass-b);border-radius:var(--r);box-shadow:var(--sh)}
+.pad{padding:clamp(16px,3vw,30px)}
+.btn{border:0;border-radius:999px;padding:12px 22px;font-weight:800;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .15s,opacity .2s;min-height:46px}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:linear-gradient(135deg,#f08db0,var(--rose-d));color:#fff;box-shadow:0 8px 20px rgba(194,82,126,.32)}
+.btn.sage{background:linear-gradient(135deg,#9dc197,var(--sage-d));color:#fff;box-shadow:0 8px 20px rgba(95,138,98,.3)}
+.btn.ghost{background:#fff;color:var(--rose-d);border:2px solid var(--pink-300)}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btn:not(:disabled):hover{transform:translateY(-2px)}
+.badge{display:inline-block;padding:5px 14px;border-radius:999px;font-weight:800;font-size:.82rem;background:var(--sage-200);color:var(--sage-dd)}
+.badge.pk{background:var(--pink-200);color:var(--rose-d)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.center{text-align:center}
+.topbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.topbar h2{font-size:clamp(1.05rem,2.6vw,1.35rem);color:var(--rose-d)}
+
+/* splash */
+#splash{display:none;place-items:center}
+#splash.active{display:grid}
+.splash-in{text-align:center;max-width:520px}
+.splash-ico{font-size:clamp(56px,14vw,96px);animation:pop 1.6s ease-in-out infinite}
+@keyframes pop{0%,100%{transform:scale(1) rotate(-4deg)}50%{transform:scale(1.12) rotate(4deg)}}
+.splash-in h1{font-size:clamp(1.5rem,5vw,2.4rem);color:var(--rose-d);margin:8px 0}
+.splash-in p{color:var(--sage-dd);font-weight:700}
+.loader{height:8px;width:min(260px,70vw);margin:18px auto 0;background:var(--pink-200);border-radius:99px;overflow:hidden}
+.loader i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--rose));animation:load 1.8s ease forwards}
+@keyframes load{to{width:100%}}
+
+/* cover */
+.cover-wrap{min-height:calc(100dvh - 2*clamp(12px,3vw,28px));display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,3vw,36px);align-items:center;max-width:1100px;margin:0 auto}
+.cover-text{display:flex;flex-direction:column;gap:14px}
+.cover-text h1{font-size:clamp(1.9rem,5.2vw,3.4rem);color:var(--rose-d);text-shadow:0 2px 0 #fff}
+.cover-text .sub{color:var(--ink-2);font-weight:700}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.actions .btn{flex:1 1 180px}
+.actions .start{flex:1 1 100%;font-size:1.15rem;min-height:54px;animation:glow 2s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 8px 20px rgba(194,82,126,.32)}50%{box-shadow:0 8px 34px rgba(194,82,126,.6)}}
+.cover-art{border-radius:28px;overflow:hidden;box-shadow:var(--sh);background:#fff;aspect-ratio:520/420}
+.cover-art svg{width:100%;height:100%;display:block}
+.float{animation:floaty 4s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.wave{animation:wv 6s linear infinite}
+@keyframes wv{to{transform:translateX(-80px)}}
+.fly{animation:fly 16s linear infinite}
+@keyframes fly{0%{transform:translate(-80px,0)}100%{transform:translate(640px,-40px)}}
+.scan{transform-box:fill-box;transform-origin:center;animation:scan 5s ease-in-out infinite}
+@keyframes scan{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(18px,-10px) rotate(8deg)}}
+.halo{animation:halo 4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes halo{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.15);opacity:.5}}
+.bob{animation:floaty 3s ease-in-out infinite}
+
+/* modal */
+#modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(80,40,60,.32);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+#modal.show{display:flex;animation:fadeIn .3s}
+#modalBox{width:min(560px,100%);max-height:92dvh;overflow:auto;padding:clamp(18px,4vw,30px);background:rgba(255,255,255,.9);animation:rise .35s ease}
+@keyframes rise{from{transform:translateY(24px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+#modalBtns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+.dev{text-align:center}
+.avatar,.avatar-fb{width:130px;height:130px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 8px 24px rgba(194,82,126,.3);margin:0 auto 12px;display:block}
+.avatar-fb{display:grid;place-items:center;background:linear-gradient(135deg,var(--pink-300),var(--sage));color:#fff;font-weight:800;font-size:2.4rem;font-family:'Poppins',sans-serif}
+.dev h3{color:var(--rose-d);font-size:1.3rem}
+.dev p{margin:4px 0;color:var(--ink-2);word-break:break-word}
+.modal-t{color:var(--rose-d);text-align:center;margin-bottom:10px;font-size:1.25rem}
+
+/* form */
+.formcard{max-width:520px;margin:6vh auto 0}
+.field{margin:14px 0}
+.field label{display:block;font-weight:800;margin-bottom:6px;color:var(--sage-dd)}
+.field input{width:100%;padding:13px 16px;border:2px solid var(--pink-200);border-radius:14px;font-size:1rem;font-family:inherit;background:#fff;outline:none;transition:border .2s,box-shadow .2s}
+.field input:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(224,112,154,.18)}
+.field.err input{border-color:var(--bad);animation:shake .35s}
+.errmsg{display:none;color:var(--bad);font-weight:700;font-size:.9rem;margin-top:5px}
+.field.err .errmsg{display:block}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* intro slides */
+.intro-card{max-width:760px;margin:3vh auto 0;min-height:340px;display:flex;flex-direction:column}
+.intro-slide{flex:1;text-align:center;animation:fadeIn .4s}
+.intro-slide .big{font-size:clamp(54px,12vw,84px)}
+.intro-slide h2{color:var(--rose-d);margin:8px 0 10px;font-size:clamp(1.3rem,4vw,1.9rem)}
+.intro-slide p,.intro-slide li{color:var(--ink-2)}
+.intro-slide ul{text-align:left;max-width:520px;margin:10px auto 0;padding-left:22px}
+.dots{display:flex;gap:8px;justify-content:center;margin:14px 0}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--pink-200);display:inline-block;transition:all .25s}
+.dot.cur{background:var(--rose);width:28px;border-radius:9px}
+.dot.done{background:var(--sage)}
+.navrow{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px}
+.navrow .btn{flex:1 1 140px}
+
+/* menu */
+.profile{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.pf-av{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--pink-300),var(--sage));display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.5rem;font-family:'Poppins',sans-serif;flex:none}
+.pf-t h2{font-size:1.25rem;color:var(--rose-d)}
+.pf-t p{color:var(--ink-2);font-size:.95rem}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mcard{padding:22px 18px;text-align:center;border:0;color:inherit;display:flex;flex-direction:column;gap:8px;align-items:center;transition:transform .2s,box-shadow .2s;position:relative;background:var(--glass)}
+.mcard:hover{transform:translateY(-4px)}
+.mcard .mi{font-size:54px}
+.mcard h3{font-size:1.3rem;color:var(--rose-d)}
+.mcard p{color:var(--ink-2);font-size:.93rem}
+.mcard .st{font-weight:800;padding:5px 14px;border-radius:99px;font-size:.85rem;background:var(--sage-200);color:var(--sage-dd)}
+.mcard.locked{filter:grayscale(.55);opacity:.85}
+.mcard.locked .st{background:#eadfe4;color:#7b6a73}
+.mcard.done .st{background:var(--sage);color:#fff}
+
+/* slides learn */
+.slide-card{padding:clamp(16px,3vw,28px);margin-bottom:16px}
+.s-head{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.s-ico{font-size:44px}
+.s-no{font-weight:800;color:var(--sage-dd);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
+.s-head h2{font-size:clamp(1.2rem,3.4vw,1.7rem);color:var(--rose-d)}
+.blk{border-radius:18px;padding:14px 18px;margin:12px 0;background:rgba(255,255,255,.75);border-left:6px solid var(--pink-300)}
+.blk h3{font-size:1.02rem;margin-bottom:6px;color:var(--rose-d)}
+.blk p{margin:6px 0}
+.blk ul,.blk ol{margin:6px 0 6px 22px}
+.blk li{margin:3px 0}
+.blk.local{border-left-color:var(--sage);background:var(--sage-100)}
+.blk.local h3{color:var(--sage-dd)}
+.blk.kbc{border-left-color:var(--rose);background:var(--pink-100)}
+.blk.ayat{border-left-color:var(--warn);background:#fff8ec}
+.blk.ayat h3{color:#a8731f}
+.ayat-ar{font-family:'Amiri','Scheherazade New','Traditional Arabic','Noto Naskh Arabic',serif;font-size:clamp(1.5rem,4.6vw,2.15rem);line-height:2.1;text-align:right;direction:rtl;margin-top:6px;color:#2f2a24}
+.ayat-ref{font-weight:800;color:#a8731f;font-size:.9rem;margin-top:2px}
+.ayat-id{font-style:italic;margin:2px 0 8px}
+.kor{background:#fff;border-radius:12px;padding:8px 12px;font-size:.95rem}
+.activity{padding:clamp(16px,3vw,26px);border:2px dashed var(--rose);border-radius:var(--r);background:rgba(255,255,255,.85);margin-bottom:14px}
+.activity h3{color:var(--rose-d);margin-bottom:6px}
+.prompt{font-weight:700;margin-bottom:10px}
+.fb{margin-top:12px;padding:0;border-radius:14px;font-weight:700}
+.fb.ok,.fb.no,.fb.info{padding:12px 16px}
+.fb.ok{background:#e4f4e8;color:#2c6c43}
+.fb.no{background:#fdebee;color:#a73345}
+.fb.info{background:#fff3df;color:#8a5b12}
+.fb small{display:block;font-weight:600;margin-top:4px;color:var(--ink)}
+
+/* engines */
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:12px 14px;margin:8px 0;border-radius:14px;border:2px solid var(--pink-200);background:#fff;color:var(--ink);font-size:1rem;transition:all .15s;font-weight:600}
+.opt b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--pink-200);color:var(--rose-d);display:grid;place-items:center}
+.opt:hover{border-color:var(--rose)}
+.opt.sel{border-color:var(--rose);background:var(--pink-100)}
+.opt.right{border-color:var(--ok);background:#e4f4e8}.opt.right b{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:#fdebee;animation:shake .35s}.opt.wrong b{background:var(--bad);color:#fff}
+.opt.chk b{border-radius:8px}
+.hint{font-size:.9rem;color:var(--ink-2);margin-bottom:8px}
+.dnd-pool{min-height:64px;padding:10px;border-radius:16px;background:rgba(255,255,255,.7);border:2px dashed var(--sage);display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.dnd-zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.zone{border-radius:16px;background:var(--sage-100);border:2px solid var(--sage-300);padding:8px;transition:all .15s}
+.zone.over{background:var(--sage-200);border-color:var(--sage-d)}
+.zone-t{font-weight:800;text-align:center;color:var(--sage-dd);padding:4px 6px 8px}
+.zone-b{min-height:60px;display:flex;flex-direction:column;gap:6px}
+.chip{background:#fff;border:2px solid var(--pink-300);border-radius:12px;padding:8px 12px;font-size:.95rem;font-weight:600;cursor:grab;user-select:none;transition:transform .12s,box-shadow .12s;line-height:1.4}
+.chip:hover{box-shadow:0 4px 12px rgba(194,82,126,.2)}
+.chip.sel{border-color:var(--rose-d);background:var(--pink-100);box-shadow:0 0 0 4px rgba(224,112,154,.25);transform:scale(1.02)}
+.chip.right{border-color:var(--ok);background:#e4f4e8}
+.chip.wrong{border-color:var(--bad);background:#fdebee}
+.sort-list{display:flex;flex-direction:column;gap:8px}
+.sort-row{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--pink-300);border-radius:14px;padding:8px 10px;cursor:grab;user-select:none}
+.sort-row.sel{border-color:var(--rose-d);background:var(--pink-100);box-shadow:0 0 0 4px rgba(224,112,154,.25)}
+.sort-row.right{border-color:var(--ok);background:#e4f4e8}
+.sort-row.wrong{border-color:var(--bad);background:#fdebee}
+.sort-row .no{flex:none;width:30px;height:30px;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center;font-weight:800}
+.sort-row .tx{flex:1;font-weight:600}
+.sort-row .ar{display:flex;flex-direction:column;gap:2px}
+.sort-row .ar button{border:0;background:var(--pink-100);color:var(--rose-d);width:30px;height:22px;border-radius:7px;font-size:.7rem}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mcol{display:flex;flex-direction:column;gap:8px}
+.mt{display:flex;gap:8px;align-items:center;text-align:left;border:2px solid var(--pink-200);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;font-size:.95rem;color:var(--ink);min-height:48px;line-height:1.35}
+.mt .dot{width:14px;height:14px;flex:none}
+.mt.sel{border-color:var(--rose-d);box-shadow:0 0 0 4px rgba(224,112,154,.25)}
+.mt.right{background:#e4f4e8;border-color:var(--ok)}
+.mt.wrong{background:#fdebee;border-color:var(--bad)}
+.locked .chip,.locked .sort-row,.locked .opt,.locked .mt,.locked .zone{pointer-events:none}
+.engmsg{color:var(--bad);font-weight:700;margin-top:8px;min-height:1.2em;font-size:.92rem}
+.checkrow{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+
+/* play / practice */
+.mech{display:inline-block;background:var(--sage);color:#fff;font-weight:800;border-radius:99px;padding:4px 14px;font-size:.85rem}
+.lvl{display:inline-block;font-weight:800;border-radius:99px;padding:4px 14px;font-size:.85rem;color:#fff}
+.lvl.l1{background:#6fb28a}.lvl.l2{background:var(--warn)}.lvl.l3{background:var(--rose-d)}
+.stim{background:#fff;border-radius:18px;padding:14px 18px;margin:12px 0;border:2px solid var(--sage-200)}
+.stim h3{color:var(--sage-dd);font-size:1rem;margin-bottom:6px}
+.stim p{text-align:left;margin:6px 0}
+.task{margin:12px 0;font-weight:800;color:var(--rose-d)}
+.tbl{border-collapse:collapse;margin:10px 0;width:100%;max-width:520px;background:#fff;border-radius:10px;overflow:hidden}
+.tbl th,.tbl td{border:1px solid var(--pink-200);padding:7px 12px;text-align:center}
+.tbl th{background:var(--pink-100);color:var(--rose-d)}
+.scorebar{height:12px;border-radius:99px;background:var(--pink-200);overflow:hidden;margin:6px 0 14px}
+.scorebar i{display:block;height:100%;background:linear-gradient(90deg,var(--sage),var(--rose));border-radius:99px;transition:width .6s}
+.big-score{font-family:'Poppins',sans-serif;font-size:clamp(2.6rem,10vw,4.4rem);color:var(--rose-d);font-weight:700;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.stat{background:#fff;border-radius:16px;padding:12px;text-align:center;border:2px solid var(--pink-200)}
+.stat b{display:block;font-size:1.5rem;color:var(--sage-dd);font-family:'Poppins',sans-serif}
+.rev{background:#fff;border-radius:14px;padding:10px 14px;margin:8px 0;border-left:6px solid var(--bad)}
+.rev.ok{border-left-color:var(--ok)}
+.rev summary{cursor:pointer;font-weight:800}
+.rev p{margin:6px 0;font-size:.95rem}
+
+/* report */
+#reportDoc{background:#fff;color:#222;padding:clamp(16px,4vw,34px);border-radius:12px;box-shadow:var(--sh);max-width:820px;margin:0 auto}
+.rep-kop{display:flex;gap:14px;align-items:center;border-bottom:4px double var(--rose);padding-bottom:12px;margin-bottom:14px}
+.rep-logo{font-size:46px}
+.rep-kop h1{font-size:1.35rem;color:var(--rose-d)}
+.rep-kop h2{font-size:1rem;color:var(--sage-dd);font-weight:600}
+.rep-kop p{font-size:.85rem;color:#555}
+#reportDoc h3{color:var(--rose-d);margin:16px 0 6px;font-size:1.05rem;border-bottom:2px solid var(--pink-200);padding-bottom:3px}
+#reportDoc table.rt{width:100%;border-collapse:collapse;font-size:.93rem;margin:6px 0}
+#reportDoc table.rt th,#reportDoc table.rt td{border:1px solid #ddd;padding:6px 10px;text-align:left}
+#reportDoc table.rt th{background:var(--pink-100);width:36%}
+#reportDoc table.rt.grid th{width:auto;text-align:center}
+#reportDoc table.rt.grid td{text-align:center}
+.rep-note{background:var(--sage-100);border-radius:10px;padding:10px 14px;font-size:.93rem;margin:6px 0}
+.sign{display:flex;justify-content:flex-end;margin-top:22px;text-align:center;font-size:.92rem}
+.foot{text-align:center;color:var(--ink-2);font-size:.82rem;margin-top:18px}
+
+@media (max-width:820px){
+  .cover-wrap{grid-template-columns:1fr;min-height:auto;padding-top:6px}
+  .cover-art{order:-1;max-height:38dvh;aspect-ratio:auto}
+  .menu-grid{grid-template-columns:1fr}
+  .mcard{flex-direction:row;text-align:left;gap:14px;padding:14px 16px}
+  .mcard .mi{font-size:40px}
+  .mcard .tx{flex:1}
+  .match{grid-template-columns:1fr}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .cover-wrap{grid-template-columns:1.1fr .9fr;min-height:auto}
+  .cover-art{order:0;max-height:none;aspect-ratio:520/420;max-width:300px;margin:0 auto}
+  .cover-text h1{font-size:1.5rem}
+  .cover-text{gap:8px}
+  .actions .btn{min-height:40px;padding:8px 14px}
+  .actions .start{min-height:44px}
+  .formcard{margin-top:0}
+  .intro-card{min-height:0;margin-top:0}
+  .menu-grid{grid-template-columns:repeat(3,1fr)}
+  .mcard{flex-direction:column;text-align:center;padding:12px}
+  .mcard .mi{font-size:34px}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff}
+  #petals,#modal,.no-print{display:none!important}
+  .screen{position:static!important;display:none!important;padding:0}
+  #laporan{display:block!important;overflow:visible}
+  #reportDoc{box-shadow:none;max-width:none;padding:0}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body>
+<div id="petals" aria-hidden="true"></div>
+
+<!-- SPLASH -->
+<section id="splash" class="screen active" aria-label="Memuat">
+  <div class="splash-in">
+    <div class="splash-ico">🔍🌿</div>
+    <h1>Teks Laporan Hasil Observasi</h1>
+    <p>Bahasa Indonesia • Kelas X / Fase E</p>
+    <div class="loader"><i></i></div>
+  </div>
+</section>
+
+<!-- COVER -->
+<section id="cover" class="screen">
+  <div class="cover-wrap">
+    <div class="cover-text">
+      <div class="badges"><span class="badge pk">📚 Bahasa Indonesia</span><span class="badge">🎓 Kelas X / Fase E</span><span class="badge pk">🕌 Madrasah Aliyah</span></div>
+      <h1>Teks Laporan Hasil Observasi</h1>
+      <p class="sub">Media Pembelajaran Interaktif berbasis Kurikulum Berbasis Cinta — belajar mengamati, mengevaluasi, dan melaporkan secara objektif.</p>
+      <div class="actions">
+        <button class="btn ghost" id="btnDev" type="button">👩‍🏫 Informasi Pengembang</button>
+        <button class="btn ghost" id="btnGoal" type="button">🎯 Tujuan Pembelajaran</button>
+        <button class="btn pri start" id="btnStart" type="button">MULAI ▶</button>
+      </div>
+    </div>
+    <div class="cover-art">
+      <svg viewBox="0 0 520 420" role="img" aria-label="Ilustrasi pengamatan danau, mangrove, dan lembar laporan">
+        <defs>
+          <clipPath id="clipArt"><rect width="520" height="420" rx="28"/></clipPath>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffdcea"/><stop offset="1" stop-color="#fff7fa"/></linearGradient>
+          <linearGradient id="wtr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4e9df"/><stop offset="1" stop-color="#a6cbb9"/></linearGradient>
+        </defs>
+        <g clip-path="url(#clipArt)">
+          <rect width="520" height="420" fill="url(#sky)"/>
+          <circle class="halo" cx="420" cy="84" r="56" fill="#ffc9b0" opacity=".3"/>
+          <circle cx="420" cy="84" r="36" fill="#ffd9c2"/>
+          <path d="M0 250 Q90 185 190 238 T370 226 T520 214 V310 H0Z" fill="#c6dcc0"/>
+          <path d="M0 272 Q130 226 250 266 T520 248 V330 H0Z" fill="#9fbf99"/>
+          <rect y="296" width="520" height="130" fill="url(#wtr)"/>
+          <g opacity=".8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round">
+            <path class="wave" d="M-80 322 q20-10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+            <path class="wave" style="animation-duration:8s" d="M-80 356 q20-10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+            <path class="wave" style="animation-duration:10s" d="M-80 388 q20-10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+          </g>
+          <!-- mangrove -->
+          <g transform="translate(96,300)">
+            <path d="M0 0 C-4 -50 -2 -90 2 -120" stroke="#7b5a48" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M-2 -10 C-30 0 -42 14 -52 30 M2 -10 C34 0 46 14 56 30 M0 -6 C-8 10 -12 22 -14 34 M0 -6 C10 10 14 22 16 34" stroke="#7b5a48" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <g class="bob"><circle cx="2" cy="-132" r="34" fill="#6f9a6c"/><circle cx="-26" cy="-112" r="24" fill="#86ad82"/><circle cx="30" cy="-112" r="24" fill="#86ad82"/><circle cx="6" cy="-150" r="18" fill="#9bc096"/></g>
+          </g>
+          <!-- eceng gondok -->
+          <g class="bob" style="animation-delay:-1s"><ellipse cx="380" cy="340" rx="26" ry="9" fill="#7fae7a"/><circle cx="380" cy="330" r="7" fill="#f6a3c1"/><circle cx="388" cy="334" r="5" fill="#fbc4d8"/></g>
+          <g class="bob" style="animation-delay:-2s"><ellipse cx="450" cy="372" rx="22" ry="8" fill="#7fae7a"/><circle cx="450" cy="363" r="6" fill="#f6a3c1"/></g>
+          <!-- clipboard -->
+          <g transform="translate(270,118)"><g class="float">
+            <rect x="0" y="0" width="150" height="196" rx="16" fill="#fff" stroke="#e0709a" stroke-width="4"/>
+            <rect x="42" y="-10" width="66" height="22" rx="9" fill="#e0709a"/>
+            <text x="75" y="42" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" font-weight="700" fill="#c2527e">LAPORAN</text>
+            <g stroke="#d9c4cd" stroke-width="5" stroke-linecap="round"><path d="M22 66h106M22 88h84M22 110h100M22 132h70"/></g>
+            <g stroke="#5f8a62" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 160l8 8 14-16"/></g>
+            <rect x="56" y="156" width="72" height="14" rx="7" fill="#d2e3cc"/>
+          </g></g>
+          <!-- magnifier -->
+          <g transform="translate(212,262)"><g class="scan">
+            <circle cx="0" cy="0" r="30" fill="#ffffff" fill-opacity=".45" stroke="#5f8a62" stroke-width="7"/>
+            <path d="M22 22L50 50" stroke="#5f8a62" stroke-width="9" stroke-linecap="round"/>
+            <path d="M-14 -8q8-12 20-8" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>
+          </g></g>
+          <!-- bird -->
+          <g class="fly"><path d="M0 70q10-12 20 0q10-12 20 0" stroke="#6b5662" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+          <g class="fly" style="animation-delay:-6s"><path d="M0 120q7-9 14 0q7-9 14 0" stroke="#8a7480" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITAS -->
+<section id="identity" class="screen">
+  <div class="wrap">
+    <div class="glass pad formcard">
+      <div class="center"><div style="font-size:54px">📝</div><h2 style="color:var(--rose-d)">Identitas Murid</h2><p style="color:var(--ink-2)">Isi data dirimu sebelum memulai petualangan belajar.</p></div>
+      <form id="formId" novalidate>
+        <div class="field" id="fName"><label for="inName">Nama Lengkap</label><input id="inName" type="text" autocomplete="name" placeholder="Contoh: Siti Aisyah" maxlength="60"><div class="errmsg">Nama lengkap wajib diisi (minimal 3 karakter).</div></div>
+        <div class="field" id="fKelas"><label for="inKelas">Kelas</label><input id="inKelas" type="text" placeholder="Contoh: X-1" maxlength="20"><div class="errmsg">Kelas wajib diisi.</div></div>
+        <div class="row" style="margin-top:18px"><button type="button" class="btn ghost" id="btnIdBack" style="flex:1 1 120px">⬅ Kembali</button><button type="submit" class="btn pri" style="flex:2 1 180px">Lanjut ➜</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PENGANTAR -->
+<section id="intro" class="screen">
+  <div class="wrap">
+    <div class="glass pad intro-card">
+      <div class="intro-slide" id="introSlide"></div>
+      <div class="dots" id="introDots"></div>
+      <div class="navrow"><button class="btn ghost" id="introPrev" type="button">⬅ Kembali</button><button class="btn pri" id="introNext" type="button">Selanjutnya ➜</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="screen">
+  <div class="wrap">
+    <div class="glass pad profile">
+      <div class="pf-av" id="pfAv">A</div>
+      <div class="pf-t" style="flex:1;min-width:200px"><h2 id="pfName">Nama</h2><p id="pfKelas">Kelas</p><div class="scorebar" style="max-width:320px"><i id="pfBar" style="width:0%"></i></div></div>
+      <div class="badge pk" id="pfProg">Progres 0%</div>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+    <p class="foot">Selesaikan tahap demi tahap: Belajar ➜ Bermain ➜ Berlatih. 🌸</p>
+  </div>
+</section>
+
+<!-- BELAJAR -->
+<section id="belajar" class="screen">
+  <div class="wrap">
+    <div class="topbar"><button class="btn ghost" id="learnBack" type="button">🏠 Menu</button><h2>📖 Belajar</h2><span class="badge" id="learnCount">Slide 1 dari 6</span></div>
+    <div class="dots" id="learnProg"></div>
+    <div id="learnBody"></div>
+    <div class="navrow"><button class="btn ghost" id="learnPrev" type="button">⬅ Sebelumnya</button><button class="btn pri" id="learnNext" type="button">Selanjutnya ➜</button></div>
+  </div>
+</section>
+
+<!-- BERMAIN -->
+<section id="bermain" class="screen">
+  <div class="wrap">
+    <div class="topbar"><button class="btn ghost" id="playBack" type="button">🏠 Menu</button><h2>🎮 Bermain</h2><span class="badge" id="playCount">Tantangan 1 dari 10</span></div>
+    <div class="dots" id="playProg"></div>
+    <div id="playBody"></div>
+  </div>
+</section>
+
+<!-- BERLATIH -->
+<section id="berlatih" class="screen">
+  <div class="wrap">
+    <div class="topbar"><button class="btn ghost" id="pracBack" type="button">🏠 Menu</button><h2>✍️ Berlatih</h2><span class="badge" id="pracCount">Soal 1 dari 10</span></div>
+    <div class="dots" id="pracProg"></div>
+    <div id="pracBody"></div>
+  </div>
+</section>
+
+<!-- LAPORAN -->
+<section id="laporan" class="screen">
+  <div class="wrap">
+    <div class="topbar no-print"><button class="btn ghost" id="repBack" type="button">🏠 Menu</button><h2>📄 Laporan Hasil Belajar</h2></div>
+    <div id="reportDoc"></div>
+    <div class="row no-print" style="justify-content:center;margin:18px 0">
+      <button class="btn pri" id="btnPdf" type="button">⬇ Unduh / Cetak Laporan PDF</button>
+      <button class="btn sage" id="btnPrint" type="button">🖨 Cetak</button>
+    </div>
+    <p class="foot no-print" id="pdfMsg"></p>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div id="modalBox" class="glass"><div id="modalBody"></div><div id="modalBtns"></div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script>
+(function(){
+
+'use strict';
+
+/* ================= GOOGLE APPS SCRIPT =================
+   Ganti URL berikut dengan URL Web App GAS yang berakhiran /exec.
+*/
+const GAS_URL = "https://script.google.com/macros/s/AKfycbweGNJwTSplzoFANA6kyrwSfXoMEakApemBBdOyk3Oiwbig4RkcWiTBHw8kmXC0s5vX/exec";
+const GAS_ENABLED = GAS_URL && GAS_URL !== "URL_GAS_ANDA_DISINI";
+
+function gasSend(payload) {
+  if (!GAS_ENABLED) {
+    console.warn("GAS_URL belum diisi. Data belum dikirim ke Google Sheets.", payload.action);
+    return Promise.resolve(false);
+  }
+  // mode no-cors diperlukan agar frontend GitHub Pages dapat mengirim POST ke GAS.
+  // Browser tidak dapat membaca responsnya; cek sheet Hasil untuk memastikan data masuk.
+  return fetch(GAS_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload)
+  }).then(() => true).catch(err => {
+    console.error("Pengiriman ke Google Sheets gagal:", err);
+    return false;
+  });
+}
+
+function plainText(html) {
+  const box = document.createElement("div");
+  box.innerHTML = html || "";
+  return (box.textContent || box.innerText || "").replace(/\s+/g, " ").trim();
+}
+function collectQuestionRows() {
+  const rows = [];
+  if (Array.isArray(PLAY)) PLAY.forEach((q, i) => rows.push({
+    menu: "Bermain", nomor: i + 1, judul: q.title || "",
+    stimulus: plainText(q.stim), pertanyaan: plainText(q.task),
+    jenis: q.mech || q.type || "", pilihan: JSON.stringify(q.cfg || {}),
+    kunci: plainText(q.fb || "")
+  }));
+  if (Array.isArray(PRAC)) PRAC.forEach((q, i) => rows.push({
+    menu: "Berlatih", nomor: i + 1, judul: q.title || "",
+    stimulus: plainText(q.stim), pertanyaan: plainText(q.q),
+    jenis: "Pilihan ganda", pilihan: JSON.stringify(q.opts || []),
+    kunci: q.opts && q.opts[0] ? plainText(q.opts[0]) : ""
+  }));
+  return rows;
+}
+function sendQuestionBank() {
+  gasSend({ action: "saveQuestions", questions: collectQuestionRows() });
+}
+function sendResult(menu, correct, wrong, details, score) {
+  gasSend({
+    action: "saveResult",
+    timestamp: new Date().toISOString(),
+    nama: S.name,
+    kelas: S.kelas,
+    menu: menu,
+    benar: correct,
+    salah: wrong,
+    skor: score,
+    detail: details
+  });
+}
+
+
+/* ================= UTIL ================= */
+const $=(s,r)=>(r||document).querySelector(s);
+const el=(tag,cls,html)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;};
+const shuffleNotSame=a=>{if(a.length<2)return a.slice();let s,tries=0;do{s=shuffle(a);tries++;}while(s.every((v,i)=>v===a[i])&&tries<20);return s;};
+const shuffleOpts=cfg=>{const idx=shuffle(cfg.opts.map((_,i)=>i));return{opts:idx.map(i=>cfg.opts[i]),ans:idx.indexOf(cfg.ans)};};
+const COL=['#e0709a','#5f8a62','#e0a458','#6f9bd1','#a77bd1','#d1765f'];
+const LET='ABCD';
+
+const S={name:'',kelas:'',learnDone:Array(6).fill(false),unlock:{play:false,practice:false},
+  play:[],prac:{ans:Array(10).fill(-1),idx:0,done:false,res:null},introIdx:0,learnIdx:0};
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const t=$('#'+id);t.classList.add('active');t.scrollTop=0;
+}
+function openModal(html,btns){
+  $('#modalBody').innerHTML=html;const f=$('#modalBtns');f.innerHTML='';
+  (btns||[{t:'Tutup'}]).forEach(x=>{const b=el('button','btn '+(x.c||'ghost'),x.t);b.type='button';b.onclick=()=>{closeModal();if(x.fn)x.fn();};f.appendChild(b);});
+  const m=$('#modal');m.classList.add('show');m.setAttribute('aria-hidden','false');
+}
+function closeModal(){const m=$('#modal');m.classList.remove('show');m.setAttribute('aria-hidden','true');}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* bunga berguguran */
+(function(){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const p=$('#petals'),ch=['🌸','🌸','🌺','🌷'];
+  for(let i=0;i<16;i++){const s=document.createElement('span');s.className='petal';s.textContent=ch[i%4];
+    s.style.left=(Math.random()*100)+'%';s.style.fontSize=(14+Math.random()*16)+'px';
+    s.style.animationDuration=(10+Math.random()*10)+'s';s.style.animationDelay=(-Math.random()*16)+'s';p.appendChild(s);}
+})();
+
+/* ================= DATA: AYAT ================= */
+const AY={
+ yunus:{ar:'قُلِ انظُرُوا مَاذَا فِي السَّمَاوَاتِ وَالْأَرْضِ',ref:'QS. Yunus [10]: 101 (potongan awal)',id:'Katakanlah (Muhammad), “Perhatikanlah apa yang ada di langit dan di bumi.”'},
+ ghasyiyah:{ar:'أَفَلَا يَنظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ ۝ وَإِلَى السَّمَاءِ كَيْفَ رُفِعَتْ',ref:'QS. Al-Ghasyiyah [88]: 17–18',id:'Maka tidakkah mereka memperhatikan unta, bagaimana diciptakan? Dan langit, bagaimana ia ditinggikan?'},
+ rahman:{ar:'خَلَقَ الْإِنسَانَ ۝ عَلَّمَهُ الْبَيَانَ',ref:'QS. Ar-Rahman [55]: 3–4',id:'Dia menciptakan manusia, mengajarnya pandai berbicara.'},
+ ali:{ar:'إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ لَآيَاتٍ لِّأُولِي الْأَلْبَابِ',ref:'QS. Ali Imran [3]: 190',id:'Sesungguhnya dalam penciptaan langit dan bumi, dan pergantian malam dan siang terdapat tanda-tanda (kebesaran Allah) bagi orang yang berakal.'},
+ hujurat:{ar:'يَا أَيُّهَا الَّذِينَ آمَنُوا إِن جَاءَكُمْ فَاسِقٌ بِنَبَإٍ فَتَبَيَّنُوا أَن تُصِيبُوا قَوْمًا بِجَهَالَةٍ فَتُصْبِحُوا عَلَىٰ مَا فَعَلْتُمْ نَادِمِينَ',ref:'QS. Al-Hujurat [49]: 6',id:'Wahai orang-orang yang beriman, jika seseorang yang fasik datang kepadamu membawa berita, maka telitilah kebenarannya, agar kamu tidak mencelakakan suatu kaum karena kebodohan (kecerobohan), yang akhirnya kamu menyesal atas perbuatanmu itu.'},
+ isra:{ar:'وَلَا تَقْفُ مَا لَيْسَ لَكَ بِهِ عِلْمٌ ۚ إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا',ref:'QS. Al-Isra’ [17]: 36',id:'Dan janganlah engkau mengikuti sesuatu yang engkau tidak mempunyai ilmu tentangnya. Karena pendengaran, penglihatan, dan hati nurani, semua itu akan diminta pertanggungjawabannya.'},
+ rum:{ar:'ظَهَرَ الْفَسَادُ فِي الْبَرِّ وَالْبَحْرِ بِمَا كَسَبَتْ أَيْدِي النَّاسِ لِيُذِيقَهُم بَعْضَ الَّذِي عَمِلُوا لَعَلَّهُمْ يَرْجِعُونَ',ref:'QS. Ar-Rum [30]: 41',id:'Telah tampak kerusakan di darat dan di laut disebabkan karena perbuatan tangan manusia, (Allah menghendaki) agar mereka merasakan sebagian dari (akibat) perbuatan mereka, agar mereka kembali (ke jalan yang benar).'},
+ araf:{ar:'وَلَا تُفْسِدُوا فِي الْأَرْضِ بَعْدَ إِصْلَاحِهَا وَادْعُوهُ خَوْفًا وَطَمَعًا ۚ إِنَّ رَحْمَتَ اللَّهِ قَرِيبٌ مِّنَ الْمُحْسِنِينَ',ref:'QS. Al-A’raf [7]: 56',id:'Dan janganlah kamu berbuat kerusakan di bumi setelah (diciptakan) dengan baik. Berdoalah kepada-Nya dengan rasa takut dan penuh harap. Sesungguhnya rahmat Allah sangat dekat kepada orang yang berbuat kebaikan.'},
+ alaq1:{ar:'اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ',ref:'QS. Al-‘Alaq [96]: 1',id:'Bacalah dengan (menyebut) nama Tuhanmu yang menciptakan.'},
+ alaq5:{ar:'عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ',ref:'QS. Al-‘Alaq [96]: 5',id:'Dia mengajarkan manusia apa yang tidak diketahuinya.'}
+};
+function ayatHTML(list,kor){
+  return list.map(k=>{const a=AY[k];return `<div class="ayat-ar" lang="ar" dir="rtl">${a.ar}</div><div class="ayat-ref">${a.ref}</div><div class="ayat-id">“${a.id.replace(/^“|”$/g,'')}”</div>`;}).join('')+(kor?`<p class="kor"><b>Korelasi konsep:</b> ${kor}</p>`:'');
+}
+
+/* ================= DATA: BELAJAR (6 SLIDE) ================= */
+const LEARN=[
+{ico:'🔍',title:'Mengenal Teks Laporan Hasil Observasi',
+ materi:`<p><b>Teks laporan hasil observasi</b> adalah teks yang memaparkan hasil pengamatan langsung terhadap suatu objek — tumbuhan, hewan, benda, tempat, atau peristiwa — secara <i>sistematis, faktual, dan objektif</i>. Pengamatan dilakukan dengan pancaindra dan alat bantu (meteran, termometer, kamera, lembar pengamatan), kemudian hasilnya dicatat, diolah, dan dituliskan agar pembaca memperoleh informasi yang akurat.</p><p>Observasi berbeda dari sekadar “melihat-lihat”. Pengamat memiliki tujuan, objek yang jelas, dan catatan yang dapat dipertanggungjawabkan. Ciri utama teks ini:</p><ul><li><b>Faktual</b> — berdasarkan kenyataan yang dapat dibuktikan.</li><li><b>Objektif</b> — bebas dari perasaan dan penilaian pribadi penulis.</li><li><b>Sistematis</b> — tersusun runtut dan berstruktur.</li><li><b>Informatif</b> — memuat data, angka, satuan, dan istilah yang tepat.</li><li><b>Berbahasa baku</b> — bukan curahan perasaan atau cerita pengalaman pribadi.</li></ul><p>Tujuannya: memberi tahu pembaca tentang keadaan sebenarnya suatu objek, sehingga laporan dapat dijadikan dasar pengambilan keputusan dan tindakan.</p>`,
+ lokal:`Di <b>Danau Limboto</b>, pengamat dapat mencatat luas tutupan eceng gondok, jenis ikan yang ditangkap nelayan, atau burung air yang singgah. Di pesisir <b>Teluk Tomini</b>, objek amatan bisa berupa mangrove dan terumbu karang; di <b>dataran agraris</b> Gorontalo, objeknya tanaman jagung dan pola tanamnya. Catatan seperti “sekitar sepertiga tepi danau tertutup eceng gondok” jauh lebih bernilai daripada “danau itu sangat kotor”.`,
+ kbc:`<b>Cinta ilmu dan cinta lingkungan.</b> Mengamati dengan teliti adalah cara menyayangi ciptaan Allah: kita memahami dulu, baru merawat. Pengamat yang jujur menghormati pembaca dan semua makhluk yang ia tuliskan.`,
+ ayat:['yunus'],kor:`Perintah “perhatikanlah” mendorong kita mengamati alam secara cermat. Inilah semangat observasi: iman yang tumbuh bersama ilmu.`,
+ act:{type:'mc',q:`Manakah kalimat yang sesuai dengan sifat teks laporan hasil observasi?`,
+  opts:[`Dalam pengamatan kelompok kami, eceng gondok menutupi sekitar sepertiga permukaan perairan di tepi Danau Limboto.`,`Danau Limboto adalah danau terindah di dunia dan pasti membuat siapa pun jatuh cinta.`,`Menurut saya, danau itu sebaiknya dibiarkan saja karena tidak penting.`],ans:0,
+  fb:`Kalimat tersebut faktual, terukur, dan dapat diperiksa kembali. Dua kalimat lainnya memuat penilaian dan pendapat pribadi.`}},
+
+{ico:'🧱',title:'Struktur Teks Laporan Hasil Observasi',
+ materi:`<p>Teks laporan hasil observasi umumnya tersusun atas tiga bagian utama:</p><ol><li><b>Pernyataan umum (klasifikasi)</b> — memperkenalkan objek: apa itu, termasuk golongan apa, dan di mana ditemukan. Biasanya berupa kalimat definisi.</li><li><b>Deskripsi bagian</b> — menguraikan ciri, bagian, sifat, atau jenis objek secara rinci, sering disertai data ukuran, jumlah, dan warna.</li><li><b>Deskripsi manfaat</b> — memaparkan kegunaan atau peran objek bagi manusia dan lingkungan. Pada beberapa teks, bagian ini ditutup dengan simpulan berdasarkan data.</li></ol><p><b>Contoh (mangrove):</b></p><ul><li><i>Mangrove adalah tumbuhan berkayu yang hidup di zona pasang surut pantai berlumpur.</i> → pernyataan umum</li><li><i>Akar napasnya mencuat ke permukaan lumpur untuk mengambil oksigen.</i> → deskripsi bagian</li><li><i>Hutan mangrove menahan gelombang sehingga abrasi pantai berkurang.</i> → deskripsi manfaat</li></ul><p>Urutan ini membantu pembaca bergerak dari gambaran umum, ke rincian, lalu ke makna objek bagi kehidupan.</p>`,
+ lokal:`Pesisir <b>Teluk Tomini</b> memiliki hutan mangrove yang menjadi rumah bagi kepiting, udang, dan ikan kecil. Saat menyusun laporan tentang mangrove di pesisir Boalemo, kamu dapat memulai dengan definisi, merinci akar dan batangnya, lalu menjelaskan perannya bagi nelayan dan perlindungan desa dari abrasi.`,
+ kbc:`<b>Cinta sesama dan cinta lingkungan.</b> Menyebutkan manfaat alam bagi sesama (nelayan, petani, warga pesisir) mengingatkan kita bahwa menjaga alam berarti menjaga rezeki bersama.`,
+ ayat:['ghasyiyah'],kor:`Allah mengajak manusia memperhatikan ciptaan-Nya satu per satu — “bagaimana diciptakan, bagaimana ditinggikan” — sebagaimana laporan yang memerinci bagian dan fungsi objek.`,
+ act:{type:'dnd',q:`Seret setiap kalimat ke bagian struktur yang tepat (atau ketuk kartu, lalu ketuk kolom tujuan).`,
+  cfg:{zones:['Pernyataan Umum','Deskripsi Bagian','Deskripsi Manfaat'],items:[
+   {t:`Mangrove adalah tumbuhan berkayu yang hidup di zona pasang surut.`,z:0},
+   {t:`Ekosistem mangrove termasuk golongan hutan pesisir tropis.`,z:0},
+   {t:`Akar napas mencuat ke permukaan lumpur untuk mengambil oksigen.`,z:1},
+   {t:`Batang ditopang akar tunjang yang kokoh pada tanah berlumpur.`,z:1},
+   {t:`Hutan mangrove menahan gelombang sehingga abrasi pantai berkurang.`,z:2},
+   {t:`Kawasan mangrove menjadi tempat berkembang biak ikan dan kepiting.`,z:2}]},
+  fb:`Pernyataan umum = pengenalan/definisi objek; deskripsi bagian = rincian ciri; deskripsi manfaat = kegunaan objek.`}},
+
+{ico:'✏️',title:'Kaidah Kebahasaan Teks Laporan',
+ materi:`<p>Agar laporan terbaca jelas dan objektif, perhatikan kaidah kebahasaan berikut:</p><ul><li><b>Kalimat definisi</b> — memakai penghubung <i>adalah, ialah, merupakan, yaitu</i>. Contoh: <i>Salinitas adalah kadar garam yang terlarut dalam air.</i></li><li><b>Kalimat deskriptif</b> — memerinci ciri dengan kata kerja seperti <i>memiliki, terdiri atas, berwarna, berukuran</i>.</li><li><b>Istilah teknis/ilmiah</b> — misalnya <i>sedimentasi, vegetasi, salinitas, fotosintesis</i>, dipakai tepat dan dijelaskan jika perlu.</li><li><b>Data terukur</b> — angka disertai satuan dan waktu: <i>suhu air 29°C pukul 08.00</i>.</li><li><b>Konjungsi penerang dan perincian</b> — <i>yaitu, misalnya, antara lain, sehingga, karena</i>.</li><li><b>Kata baku dan ejaan resmi</b> — kata tidak baku (<i>aktifitas, analisa</i>) diganti kata baku (<i>aktivitas, analisis</i>).</li></ul><p><b>Hindari:</b> kata ganti orang pertama (<i>aku, saya</i>) yang berlebihan, ungkapan perasaan (<i>indah sekali, mengerikan</i>), kata pasti tanpa bukti (<i>pasti, jelas-jelas</i>), serta saran (<i>sebaiknya, seharusnya</i>) yang dicampur ke dalam bagian fakta.</p>`,
+ lokal:`Saat mengukur kadar garam air di muara dan pesisir <b>Teluk Tomini</b>, atau mencatat endapan lumpur di <b>Danau Limboto</b>, istilah seperti <i>salinitas</i>, <i>sedimentasi</i>, dan <i>vegetasi</i> membantu laporanmu terdengar ilmiah. Petani jagung di dataran agraris pun memakai istilah seperti <i>hama</i> dan <i>masa panen</i>.`,
+ kbc:`<b>Kejujuran dan amanah.</b> Memakai kata yang tepat dan tidak melebih-lebihkan adalah wujud kejujuran. Bahasa yang santun dan akurat menghormati pembaca dan menjaga kerukunan.`,
+ ayat:['rahman'],kor:`Kemampuan berbahasa (<i>al-bayan</i>) adalah anugerah Allah. Kita bersyukur dengan menggunakannya secara jelas, benar, dan bertanggung jawab.`,
+ act:{type:'mc',q:`Manakah kalimat yang paling sesuai dengan kaidah kebahasaan teks laporan hasil observasi?`,
+  opts:[`Salinitas air di muara Teluk Tomini berkisar 28–32 per mil pada pukul 09.00.`,`Airnya asin banget jadi ikannya pada kabur semua, kasihan sekali.`,`Menurutku airnya lumayan asin dan enak dipandang.`],ans:0,
+  fb:`Kalimat ini memakai istilah ilmiah (salinitas), baku, serta data berupa angka dan satuan tanpa penilaian pribadi.`}},
+
+{ico:'📐',title:'Langkah Observasi dan Pengolahan Data',
+ materi:`<p>Penyusunan laporan yang baik dimulai dari observasi yang terencana:</p><ol><li><b>Menentukan objek dan tujuan</b> — apa yang diamati dan untuk apa.</li><li><b>Menyusun instrumen</b> — tabel pengamatan, daftar pertanyaan wawancara, alat ukur.</li><li><b>Melakukan pengamatan dan pencatatan</b> — catat apa adanya: waktu, tempat, ukuran, jumlah.</li><li><b>Mengolah dan menganalisis data</b> — mengelompokkan, menghitung rata-rata dan persentase.</li><li><b>Menyusun laporan</b> — sesuai struktur, lalu menyunting bahasa dan data.</li></ol><p><b>Rumus sederhana untuk numerasi:</b></p><ul><li>Rata-rata = jumlah seluruh data ÷ banyak data.</li><li>Persentase = (bagian ÷ keseluruhan) × 100%.</li></ul><p><b>Contoh:</b> dari 20 petak pengamatan berukuran 1 × 1 meter, 8 petak tertutup eceng gondok. Persentase tutupan = 8 ÷ 20 × 100% = <b>40%</b>. Data disajikan dalam tabel agar mudah dibandingkan.</p>`,
+ lokal:`Kelompok siswa dapat memasang petak pengamatan di tepi <b>Danau Limboto</b>, menghitung tutupan eceng gondok, lalu membandingkannya antartitik. Di <b>dataran agraris</b>, mereka bisa mengukur tinggi tanaman jagung di lima titik, lalu menghitung rata-ratanya.`,
+ kbc:`<b>Cinta sesama dan cinta tanah air.</b> Mintalah izin warga atau pemilik lahan dengan santun, bekerja sama dalam kelompok, dan jangan merusak objek amatan. Hasil observasi dibagikan kembali sebagai manfaat untuk masyarakat.`,
+ ayat:['ali'],kor:`Orang berakal (<i>ulul albab</i>) adalah mereka yang merenungkan ciptaan Allah dengan teliti. Observasi yang terencana adalah wujud nyata dari proses merenung dan berpikir tersebut.`,
+ act:{type:'mc',q:`Dari 20 petak pengamatan, 8 petak tertutup eceng gondok. Berapa persentase tutupannya?`,
+  opts:[`40%`,`8%`,`60%`],ans:0,fb:`8 ÷ 20 × 100% = 40%. Selalu bagi bagian dengan keseluruhan, lalu kalikan 100%.`}},
+
+{ico:'⚖️',title:'Mengevaluasi Informasi Faktual',
+ materi:`<p>Murid yang baik tidak langsung percaya pada setiap informasi. Evaluasi informasi faktual berarti memeriksa apakah suatu pernyataan benar-benar <b>fakta</b> atau sekadar <b>opini</b>.</p><ul><li><b>Fakta</b> — dapat dibuktikan melalui pengamatan, pengukuran, dokumen, atau data. Contoh: <i>Kedalaman air di titik A adalah 2,5 meter.</i></li><li><b>Opini</b> — pandangan, perasaan, atau penilaian pribadi; sering memakai kata <i>menurut saya, seharusnya, pasti, paling indah</i>.</li></ul><p><b>Empat pertanyaan evaluasi:</b></p><ol><li><b>Sumber</b> — siapa atau apa sumbernya, dan apakah ia dapat dipercaya?</li><li><b>Waktu dan tempat</b> — kapan dan di mana informasi itu berlaku?</li><li><b>Bukti</b> — adakah angka, satuan, alat ukur, atau dokumen pendukung?</li><li><b>Pembanding</b> — apakah sumber lain menguatkan, dan apakah kesimpulannya tidak melampaui data?</li></ol><p>Informasi yang lolos pemeriksaan ini layak dimasukkan ke dalam laporan; opini dipisahkan atau dibuang.</p>`,
+ lokal:`Pesan viral seperti “Danau Limboto kering total” perlu diperiksa: kapan fotonya diambil, di titik mana, dan apa kata data kedalaman serta nelayan setempat? Begitu pula kabar tentang mangrove Teluk Tomini atau harga jagung di pasar — cek dahulu sebelum dilaporkan.`,
+ kbc:`<b>Tabayyun dan moderasi beragama.</b> Bersikap adil dan tidak tergesa menuduh adalah wujud cinta sesama. Memeriksa berita menjaga kerukunan dan mencegah fitnah di tengah masyarakat.`,
+ ayat:['hujurat','isra'],kor:`Kedua ayat ini menjadi dasar evaluasi informasi: telitilah berita (tabayyun) dan jangan mengikuti sesuatu tanpa ilmu, karena pendengaran, penglihatan, dan hati akan dimintai pertanggungjawaban.`,
+ act:{type:'dnd',q:`Pisahkan pernyataan berikut menjadi Fakta atau Opini. Seret kartu ke kolom yang tepat (atau ketuk kartu lalu ketuk kolom).`,
+  cfg:{zones:['Fakta','Opini'],items:[
+   {t:`Sekitar 40% petak di titik A tertutup eceng gondok.`,z:0},
+   {t:`Suhu air di muara tercatat 30°C pukul 09.00.`,z:0},
+   {t:`Kelompok kami mengidentifikasi tiga jenis pohon mangrove di petak pengamatan.`,z:0},
+   {t:`Pantai Teluk Tomini adalah pantai paling indah sedunia.`,z:1},
+   {t:`Nelayan seharusnya tidak boleh lagi menangkap ikan di danau.`,z:1},
+   {t:`Eceng gondok pasti membuat warga menjadi malas bekerja.`,z:1}]},
+  fb:`Fakta dapat dibuktikan dengan data; opini memuat penilaian seperti “paling indah”, “seharusnya”, dan “pasti”.`}},
+
+{ico:'📢',title:'Menyajikan Laporan Secara Objektif',
+ materi:`<p>Setelah data dievaluasi, laporan disusun dan disajikan secara runtut. Bagian-bagian laporan yang baik:</p><ul><li><b>Judul dan identitas</b> — menggambarkan objek yang diamati.</li><li><b>Tujuan/pendahuluan</b> — mengapa objek diamati, kapan, dan di mana.</li><li><b>Isi</b> — pernyataan umum, deskripsi bagian, deskripsi manfaat, dilengkapi tabel atau grafik dengan keterangan yang jelas.</li><li><b>Simpulan</b> — hanya yang didukung data; hindari menuduh penyebab yang belum diteliti.</li><li><b>Saran</b> — dipisahkan dari fakta agar pembaca dapat menilai sendiri.</li><li><b>Sumber</b> — narasumber, dokumen, atau alat ukur yang dipakai.</li></ul><p><b>Tips penyajian:</b> sunting ejaan dan istilah, periksa ulang angka dan satuan, gunakan bahasa baku, dan saat mempresentasikan, jelaskan temuan dengan runtut serta santun. <b>Contoh simpulan objektif:</b> “Luas mangrove bertambah dari 6 menjadi 9 hektare (naik 50%).”</p>`,
+ lokal:`Laporanmu dapat berguna bagi desa: data tutupan eceng gondok untuk gotong royong di <b>Danau Limboto</b>, data penanaman mangrove untuk perlindungan pesisir <b>Teluk Tomini</b>, atau data hasil panen jagung untuk petani di <b>dataran agraris</b> Gorontalo.`,
+ kbc:`<b>Cinta tanah air dan cinta kelestarian alam.</b> Laporan yang jujur menjadi dasar aksi nyata: menanam, membersihkan, dan merawat. Menyampaikan data tanpa menghakimi merupakan bentuk adab dan moderasi.`,
+ ayat:['rum','araf'],kor:`Kerusakan lingkungan lahir dari ulah manusia, sedangkan rahmat Allah dekat dengan orang yang berbuat baik (<i>muhsinin</i>). Laporan observasi adalah salah satu ikhtiar kita untuk memperbaiki, bukan merusak.`,
+ act:{type:'mc',q:`Data: luas mangrove tertanam tahun lalu 6 hektare, tahun ini 9 hektare. Manakah simpulan yang objektif?`,
+  opts:[`Luas mangrove bertambah 3 hektare atau 50% dibanding tahun lalu.`,`Warga sudah sangat peduli sehingga pantai pasti aman dari abrasi.`,`Penanaman mangrove tidak penting lagi karena sudah banyak.`],ans:0,
+  fb:`9 − 6 = 3 hektare, dan 3 ÷ 6 × 100% = 50%. Simpulan objektif hanya memuat hal yang didukung data.`}}
+];
+
+/* ================= DATA: BERMAIN (10 TANTANGAN) ================= */
+const PLAY=[
+{mech:'Menjodohkan',ico:'🔗',type:'match',title:'Jodohkan Kalimat dengan Bagiannya',
+ stim:`<p>Kelompok pengamat Madrasah Aliyah menyusuri pesisir Teluk Tomini di Gorontalo untuk mengamati hutan mangrove selama dua hari. Dalam catatan lapangan, mereka menulis bahwa mangrove adalah tumbuhan berkayu yang hidup di zona pasang surut berlumpur. Pada satu petak pengamatan berukuran 10 × 10 meter ditemukan 24 pohon dewasa dan 36 anakan. Akar napas tampak mencuat 20–30 sentimeter dari permukaan lumpur untuk menyerap oksigen, sedangkan akar tunjang menopang batang agar tidak roboh diterjang ombak. Di sela akar ditemukan kepiting, udang kecil, dan ikan belodok.</p><p>Warga pesisir memanfaatkan kawasan itu sebagai tempat mencari kepiting sekaligus benteng alami penahan gelombang. Para siswa menyadari bahwa menjaga mangrove berarti menjaga rezeki sesama dan merawat bumi sebagai amanah dari Allah Swt.</p>`,
+ task:`Jodohkan setiap kalimat (kiri) dengan bagian/jenis informasinya (kanan). Ketuk kalimat, lalu ketuk pasangannya.`,
+ cfg:{pairs:[[`Mangrove adalah tumbuhan berkayu yang hidup di zona pasang surut berlumpur.`,`Pernyataan umum`],[`Akar napas mencuat 20–30 sentimeter untuk menyerap oksigen.`,`Deskripsi bagian`],[`Kawasan mangrove menjadi benteng alami penahan gelombang.`,`Deskripsi manfaat`],[`Petak 10 × 10 meter berisi 24 pohon dewasa dan 36 anakan.`,`Data terukur`]]},
+ fb:`Pernyataan umum memperkenalkan objek, deskripsi bagian merinci ciri, deskripsi manfaat menjelaskan kegunaan, dan data terukur menyajikan angka hasil pengamatan (24 + 36 = 60 tumbuhan pada petak tersebut).`},
+
+{mech:'Mengurutkan',ico:'🔢',type:'sort',title:'Urutkan Langkah Observasi Lahan Jagung',
+ stim:`<p>Gorontalo dikenal sebagai daerah agraris yang banyak menanam jagung. Sekelompok murid MA ingin melaporkan pertumbuhan jagung milik seorang petani. Mereka lebih dahulu bermusyawarah menetapkan objek dan tujuan pengamatan, lalu meminta izin kepada petani dengan santun. Setelah itu, mereka menyiapkan tabel pengamatan dan meteran.</p><p>Pada hari pengamatan, lima tanaman contoh diukur dan hasilnya dicatat: 180, 175, 185, 170, dan 190 sentimeter. Data tersebut kemudian dijumlahkan dan dibagi lima sehingga diperoleh rata-rata tinggi tanaman, yaitu 180 sentimeter. Terakhir, mereka menuliskan hasilnya dalam laporan berstruktur, menyuntingnya dengan bahasa baku, dan menyerahkan salinannya kepada petani. Mereka belajar bahwa ilmu yang jujur dan santun adalah wujud cinta kepada sesama dan tanah air.</p>`,
+ task:`Urutkan langkah-langkah observasi berikut dari yang paling awal hingga terakhir. Ketuk dua kartu untuk menukar, gunakan tombol ▲▼, atau seret kartu.`,
+ cfg:{items:[`Menentukan objek dan tujuan pengamatan`,`Menyiapkan tabel pengamatan dan alat ukur`,`Mengamati dan mencatat tinggi lima tanaman`,`Mengolah data: menghitung rata-rata 180 cm`,`Menyusun laporan dan menyunting dengan bahasa baku`]},
+ fb:`Urutan yang benar: tentukan objek → siapkan instrumen → amati dan catat → olah data (900 ÷ 5 = 180 cm) → susun dan sunting laporan.`},
+
+{mech:'Drag & Drop',ico:'🧲',type:'dnd',title:'Pisahkan Fakta dari Opini',
+ stim:`<p>Warga dan siswa membicarakan keadaan Danau Limboto, danau di Provinsi Gorontalo yang menjadi sumber air, ikan, dan mata pencaharian. Seorang siswa mencatat hasil pengamatan: kedalaman air di titik A adalah 2,5 meter, suhu air pukul 08.00 sebesar 29°C, dan sekitar 40 persen permukaan di tepi danau tertutup eceng gondok.</p><p>Sementara itu, di grup percakapan warga muncul berbagai komentar. Ada yang menulis bahwa danau itu paling indah di seluruh Indonesia, ada pula yang yakin bahwa eceng gondok pasti membuat nelayan bermalas-malasan. Guru mengingatkan bahwa teks laporan hanya boleh memuat informasi yang dapat dibuktikan melalui pengamatan, pengukuran, atau dokumen, karena Al-Qur’an mengajarkan kita untuk tidak mengikuti sesuatu yang tidak kita ketahui ilmunya. Tugas kalian: pisahkan fakta dari opini.</p>`,
+ task:`Seret setiap pernyataan ke kolom Fakta atau Opini (atau ketuk kartu lalu ketuk kolom).`,
+ cfg:{zones:['Fakta','Opini'],items:[{t:`Kedalaman air di titik A adalah 2,5 meter.`,z:0},{t:`Suhu air pukul 08.00 tercatat 29°C.`,z:0},{t:`Sekitar 40 persen permukaan tepi danau tertutup eceng gondok.`,z:0},{t:`Danau Limboto adalah danau paling indah di seluruh Indonesia.`,z:1},{t:`Eceng gondok pasti membuat nelayan bermalas-malasan.`,z:1},{t:`Menurut saya, pemerintah seharusnya melarang semua kegiatan di danau.`,z:1}]},
+ fb:`Tiga pernyataan pertama dapat dibuktikan dengan pengukuran. “Paling indah”, “pasti”, dan “seharusnya” adalah ungkapan penilaian pribadi (opini).`},
+
+{mech:'Pilihan Ganda',ico:'✅',type:'mc',title:'Menghitung Rata-rata Tangkapan Nelayan',
+ stim:`<p>Danau Limboto di Provinsi Gorontalo menjadi tempat banyak nelayan menggantungkan hidup. Seorang nelayan bernama Pak Rahmat mencatat hasil tangkapan ikan nila dan mujair selama lima hari berturut-turut. Pada hari Senin ia memperoleh 12 kilogram, Selasa 18 kilogram, Rabu 15 kilogram, Kamis 9 kilogram, dan Jumat 21 kilogram. Cuaca hari Kamis berangin kencang sehingga ia melaut lebih singkat.</p><p>Anak Pak Rahmat, seorang siswa madrasah, membantu mencatat data itu dalam tabel dan belajar bahwa data yang jujur menjadi dasar laporan yang dapat dipercaya. Pak Rahmat selalu menyisihkan ikan kecil untuk dilepas kembali agar populasi ikan tetap lestari, sebagai wujud kasih sayang kepada makhluk ciptaan Allah. Guru meminta siswa menghitung rata-rata tangkapan harian untuk dimasukkan ke dalam laporan.</p>`,
+ task:`Berapa rata-rata hasil tangkapan Pak Rahmat per hari?`,
+ cfg:{opts:[`15 kilogram`,`12 kilogram`,`18 kilogram`,`75 kilogram`],ans:0},
+ fb:`12 + 18 + 15 + 9 + 21 = 75 kilogram. Rata-rata = 75 ÷ 5 = 15 kilogram per hari.`},
+
+{mech:'Pilihan Ganda Kompleks',ico:'☑️',type:'multi',title:'Tabayyun: Mengevaluasi Pesan Viral',
+ stim:`<p>Suatu pagi beredar pesan berantai di media sosial: “Danau Limboto kering total dan semua ikannya mati!” Pesan itu disertai foto tepian danau yang tampak retak-retak, tanpa keterangan tanggal maupun lokasi. Banyak warga mulai panik, dan sebagian langsung membagikannya kepada keluarga.</p><p>Seorang siswa MAN yang tinggal dekat danau merasa ragu. Ia mengingat firman Allah Swt. dalam Surah Al-Hujurat ayat 6 yang memerintahkan orang beriman untuk meneliti kebenaran suatu berita agar tidak mencelakakan suatu kaum karena kecerobohan. Ia lalu memeriksa kembali foto itu, membandingkannya dengan data kedalaman air yang dicatat kelompoknya, dan menanyakan kabar tersebut kepada nelayan yang melaut setiap hari. Hasilnya, air danau memang menyusut di beberapa tepian, tetapi tidak kering seluruhnya.</p>`,
+ task:`Centang SEMUA langkah yang termasuk evaluasi informasi faktual (tabayyun).`,
+ cfg:{items:[{t:`Memeriksa tanggal dan lokasi foto yang beredar`,c:true},{t:`Membandingkan pesan dengan data pengamatan sendiri`,c:true},{t:`Langsung membagikan pesan karena sudah banyak yang membagikan`,c:false},{t:`Menanyakan kepada narasumber yang mengetahui langsung (nelayan)`,c:true},{t:`Mempercayai pesan karena ditulis dengan huruf kapital dan tanda seru`,c:false},{t:`Mencari sumber lain yang kredibel, misalnya data instansi terkait`,c:true}]},
+ fb:`Evaluasi informasi menuntut pemeriksaan waktu-tempat, pembandingan dengan data, dan konfirmasi narasumber. Banyaknya pembagian atau gaya penulisan bukanlah bukti kebenaran.`},
+
+{mech:'Menjodohkan',ico:'🔗',type:'match',title:'Jodohkan Istilah Ilmiah dengan Maknanya',
+ stim:`<p>Para guru mengajak siswa mengamati kondisi Danau Limboto. Dari tepi danau tampak lumpur dan pasir yang terbawa air hujan dari perbukitan, mengendap di dasar perairan; peristiwa ini disebut sedimentasi. Akibatnya, danau menjadi semakin dangkal. Di permukaan, eceng gondok tumbuh sangat cepat dan menutupi perairan sehingga cahaya matahari sulit masuk ke dalam air.</p><p>Sementara itu, di pesisir Teluk Tomini, abrasi mengikis garis pantai ketika gelombang menghantam daratan yang tidak lagi dilindungi mangrove. Siswa juga mengukur salinitas atau kadar garam air di muara dan mencatat vegetasi apa saja yang tumbuh di sekitarnya. Dengan memahami istilah-istilah ilmiah itu, laporan observasi menjadi tepat dan mudah dipahami. Allah Swt. mengingatkan manusia agar tidak membuat kerusakan di bumi, sehingga istilah ini bukan sekadar hafalan, melainkan bekal untuk menjaga alam.</p>`,
+ task:`Jodohkan setiap istilah (kiri) dengan maknanya (kanan).`,
+ cfg:{pairs:[[`Sedimentasi`,`Pengendapan lumpur dan pasir di dasar perairan`],[`Eceng gondok`,`Tumbuhan air yang berkembang cepat dan menutupi permukaan`],[`Abrasi`,`Pengikisan pantai oleh gelombang laut`],[`Salinitas`,`Kadar garam yang terlarut dalam air`],[`Vegetasi`,`Kumpulan tumbuhan yang tumbuh di suatu area`]]},
+ fb:`Istilah teknis membuat laporan presisi. Sedimentasi memperdangkal danau, abrasi mengikis pantai, salinitas diukur dengan alat khusus, dan vegetasi dicatat jenisnya.`},
+
+{mech:'Mengurutkan',ico:'🔢',type:'sort',title:'Susun Paragraf Laporan tentang Hiu Paus',
+ stim:`<p>Di perairan Teluk Tomini sekitar Botubarani, Gorontalo, wisatawan sering melihat hiu paus yang muncul ke permukaan. Hiu paus adalah ikan terbesar di dunia, dengan panjang tubuh yang dapat melebihi sepuluh meter. Kulitnya berwarna abu-abu kebiruan dengan bintik-bintik putih yang unik pada tiap individu. Mulutnya sangat lebar, tetapi ia tidak memangsa manusia; ia menyaring plankton dan ikan kecil dari air laut.</p><p>Kehadirannya menjadi daya tarik wisata sehingga menambah penghasilan warga, asalkan wisatawan menjaga jarak dan tidak menyentuh atau memberinya makan sembarangan. Seorang siswa menyusun kalimat hasil pengamatannya, tetapi urutannya tertukar dan harus dirapikan sesuai struktur teks laporan: pernyataan umum, deskripsi bagian, lalu deskripsi manfaat. Rasa sayang kepada makhluk Allah terwujud dengan tidak mengganggu mereka.</p>`,
+ task:`Urutkan kalimat agar menjadi paragraf laporan yang runtut (umum → bagian → manfaat).`,
+ cfg:{items:[`Hiu paus adalah ikan terbesar di dunia yang hidup di perairan tropis.`,`Tubuhnya berwarna abu-abu kebiruan dengan bintik putih yang unik pada tiap individu.`,`Selain itu, mulutnya yang lebar digunakan untuk menyaring plankton dan ikan kecil.`,`Kehadirannya menarik wisatawan sehingga menambah penghasilan warga sekitar.`,`Namun, wisatawan wajib menjaga jarak agar hiu paus tetap nyaman.`]},
+ fb:`Paragraf dimulai dengan pernyataan umum (definisi), dilanjutkan deskripsi bagian (warna dan mulut), kemudian deskripsi manfaat (wisata) beserta etika menjaga makhluk ciptaan Allah.`},
+
+{mech:'Drag & Drop',ico:'🧲',type:'dnd',title:'Pilah Kalimat Draf Laporan Jagung',
+ stim:`<p>Siswa kelas X menyusun draf laporan observasi tentang lahan jagung di dataran agraris Gorontalo. Guru membaca drafnya dan menandai kalimat yang sesuai kaidah kebahasaan teks laporan serta kalimat yang perlu diperbaiki. Menurut guru, teks laporan yang baik memuat kalimat definisi yang menggunakan kata penghubung seperti adalah atau merupakan, data terukur berupa angka dan satuan, serta menghindari ungkapan subjektif yang menyatakan perasaan atau penilaian pribadi.</p><p>Draf tersebut juga memuat istilah teknis seperti fotosintesis dan hama. Guru berpesan bahwa kejujuran dalam menulis hasil pengamatan adalah bentuk amanah dan akhlak mulia. Bantulah siswa memilah kalimat dalam draf ke dalam kelompok yang tepat sebelum draf disunting.</p>`,
+ task:`Seret kalimat ke kelompok yang tepat (atau ketuk kartu lalu ketuk kolom).`,
+ cfg:{zones:['Kalimat definisi','Data terukur','Ungkapan subjektif (dihindari)'],items:[{t:`Jagung adalah tanaman pangan yang bijinya tersusun pada tongkol.`,z:0},{t:`Jagung merupakan salah satu komoditas utama pertanian Gorontalo.`,z:0},{t:`Tinggi rata-rata tanaman pada umur 60 hari adalah 180 sentimeter.`,z:1},{t:`Luas lahan yang diamati mencapai 2 hektare.`,z:1},{t:`Menurut saya, ladang jagung itu sangat cantik sekali.`,z:2},{t:`Pak Tani pasti malas merawat tanaman yang rusak.`,z:2}]},
+ fb:`Kalimat definisi memakai “adalah/merupakan”, data terukur memuat angka + satuan, sedangkan “cantik sekali” dan “pasti malas” merupakan penilaian pribadi yang harus dihindari.`},
+
+{mech:'Pilihan Ganda',ico:'✅',type:'mc',title:'Persentase Keberhasilan Tanam Mangrove',
+ stim:`<p>Sekolah dan warga pesisir Teluk Tomini di Gorontalo melakukan aksi penanaman mangrove sebagai wujud cinta lingkungan dan cinta tanah air. Pada awal kegiatan, mereka menanam 500 bibit mangrove di tepi pantai berlumpur. Tiga bulan kemudian, kelompok pengamat memeriksa kembali lokasi tersebut dan mencatat bahwa 380 bibit masih hidup, sedangkan sisanya mati karena terhempas ombak atau terendam terlalu lama.</p><p>Hasil pengamatan itu dituangkan dalam laporan beserta tabel. Allah Swt. berfirman dalam Surah Al-A’raf ayat 56 agar manusia tidak berbuat kerusakan di bumi setelah diperbaiki. Karena itu, kelompok berencana menyulam bibit yang mati agar kawasan pesisir semakin kokoh melindungi desa dari abrasi. Mereka mencatat bahwa persentase keberhasilan tumbuh adalah salah satu informasi terpenting dalam laporan.</p>`,
+ task:`Berapa persentase keberhasilan tumbuh bibit mangrove tersebut?`,
+ cfg:{opts:[`76%`,`38%`,`80%`,`120%`],ans:0},
+ fb:`Persentase = 380 ÷ 500 × 100% = 76%. Sebanyak 120 bibit (24%) mati dan perlu disulam.`},
+
+{mech:'Pilihan Ganda Kompleks',ico:'☑️',type:'multi',title:'Pernyataan Benar Berdasarkan Data Panen',
+ stim:`<p>Berikut data ilustrasi luas panen jagung di tiga kecamatan di Gorontalo yang dicatat kelompok siswa.</p><table class="tbl"><tr><th>Kecamatan</th><th>Luas panen (hektare)</th></tr><tr><td>A</td><td>1.200</td></tr><tr><td>B</td><td>800</td></tr><tr><td>C</td><td>1.000</td></tr></table><p>Data tersebut dikumpulkan dari catatan penyuluh pertanian dan dibandingkan dengan hasil pengamatan lapangan. Siswa diminta menyusun pernyataan faktual berdasarkan data itu untuk laporan mereka, bukan pernyataan yang melebihi isi data. Mereka juga mengingat bahwa Islam mengajarkan sikap adil dalam menimbang dan menilai sesuatu (QS. Al-Ma’idah: 8), sehingga angka tidak boleh dilebih-lebihkan atau dikurangi. Pertanian jagung yang tertata baik menopang pangan keluarga dan ekonomi daerah, yang merupakan bagian dari cinta tanah air. Karena itu, setiap angka dalam laporan harus dibaca dengan teliti, dibandingkan antarkecamatan, dan dihitung ulang sebelum disimpulkan.</p>`,
+ task:`Centang SEMUA pernyataan yang BENAR berdasarkan data.`,
+ cfg:{items:[{t:`Total luas panen ketiga kecamatan adalah 3.000 hektare.`,c:true},{t:`Kecamatan B memiliki luas panen paling kecil.`,c:true},{t:`Luas panen Kecamatan A adalah 40% dari total.`,c:true},{t:`Luas panen Kecamatan C lebih besar daripada Kecamatan A.`,c:false},{t:`Rata-rata luas panen per kecamatan adalah 1.000 hektare.`,c:true},{t:`Kecamatan A pasti memiliki petani paling rajin.`,c:false}]},
+ fb:`Total 1.200 + 800 + 1.000 = 3.000 ha; rata-rata 3.000 ÷ 3 = 1.000 ha; A = 1.200 ÷ 3.000 = 40%. Data tidak menyebutkan kerajinan petani, sehingga pernyataan itu opini.`}
+];
+
+/* ================= DATA: BERLATIH (10 SOAL) ================= */
+const PRAC=[
+{lv:1,w:8,title:'Menentukan Fungsi Kalimat dalam Struktur',
+ stim:`<p>Danau Limboto adalah danau dangkal yang terletak di Provinsi Gorontalo. Danau ini menampung air dari beberapa sungai yang mengalir dari perbukitan sekitarnya. Berdasarkan pengamatan kelompok kami, kedalaman air pada titik pengamatan pertama adalah 2,5 meter dan pada titik kedua 3 meter. Di tepian danau tumbuh eceng gondok, rumput air, dan beberapa jenis tumbuhan rawa lainnya.</p><p>Pada pagi hari tampak burung air mencari makan di sela-sela tumbuhan tersebut. Para nelayan memanfaatkan danau ini untuk menangkap ikan nila dan mujair, sedangkan warga lain memanfaatkan airnya untuk mengairi sawah dan ladang. Dengan demikian, danau ini berperan penting bagi kehidupan masyarakat sekitar. Sebagai umat beriman, kita diajak merenungi ciptaan Allah Swt. sebagaimana pesan Surah Ali Imran ayat 190.</p>`,
+ q:`Kalimat pertama teks tersebut berfungsi sebagai ...`,
+ opts:[`pernyataan umum yang memperkenalkan objek`,`deskripsi bagian yang merinci ciri objek`,`deskripsi manfaat objek bagi masyarakat`,`opini penulis tentang keindahan danau`],
+ pemb:`Kalimat “Danau Limboto adalah danau dangkal yang terletak di Provinsi Gorontalo” berupa definisi dan lokasi objek, sehingga berfungsi sebagai pernyataan umum (klasifikasi).`},
+
+{lv:1,w:8,title:'Mengidentifikasi Kalimat yang Tidak Objektif',
+ stim:`<p>Kelompok siswa MAN 1 Boalemo mengamati kawasan pesisir Teluk Tomini pada pukul 07.00 sampai 09.00. Mereka mencatat bahwa garis pantai berpasir cokelat keabuan sepanjang kurang lebih 200 meter. Di sepanjang garis pantai tumbuh pohon kelapa dengan jarak antarpohon sekitar 6 meter. Pasang tertinggi mencapai sekitar 1,2 meter dari batas air surut.</p><p>Pantai itu adalah pantai paling indah di dunia dan semua orang pasti jatuh cinta ketika melihatnya. Di bagian utara, tampak beberapa perahu nelayan bertambat. Para nelayan berangkat melaut setelah salat Subuh dan kembali sebelum tengah hari. Guru meminta setiap kelompok memeriksa kembali tulisan mereka agar laporan hanya memuat informasi yang dapat dibuktikan.</p>`,
+ q:`Kalimat yang tidak sesuai dengan sifat objektif teks laporan hasil observasi adalah ...`,
+ opts:[`Pantai itu adalah pantai paling indah di dunia dan semua orang pasti jatuh cinta ketika melihatnya.`,`Garis pantai berpasir cokelat keabuan sepanjang kurang lebih 200 meter.`,`Pasang tertinggi mencapai sekitar 1,2 meter dari batas air surut.`,`Para nelayan berangkat melaut setelah salat Subuh dan kembali sebelum tengah hari.`],
+ pemb:`Kalimat “paling indah di dunia” dan “semua orang pasti jatuh cinta” memuat penilaian dan generalisasi yang tidak dapat dibuktikan. Ketiga kalimat lain berisi hasil pengamatan yang terukur atau dapat diverifikasi.`},
+
+{lv:1,w:8,title:'Memahami Istilah Teknis dalam Teks',
+ stim:`<p>Kelompok pengamat mengukur kadar garam air di tiga lokasi pesisir Teluk Tomini dengan alat bernama refraktometer. Hasilnya, salinitas air di muara sungai sebesar 18 per mil, di tengah teluk 32 per mil, dan di tepi pantai berkarang 34 per mil. Salinitas dipengaruhi oleh banyaknya air tawar yang masuk dari sungai, penguapan, serta curah hujan.</p><p>Di muara, air tawar bercampur dengan air laut sehingga kadar garamnya lebih rendah. Hutan mangrove tumbuh baik di wilayah bersalinitas rendah hingga sedang. Para siswa menuliskan istilah tersebut dengan tepat dalam laporan agar pembaca memahami data. Mereka menyadari bahwa penggunaan istilah ilmiah yang benar mencerminkan kejujuran dan ketelitian dalam menuntut ilmu, sebagaimana semangat perintah “Iqra’” dalam Surah Al-‘Alaq ayat 1.</p>`,
+ q:`Makna kata salinitas dalam teks tersebut adalah ...`,
+ opts:[`kadar garam yang terlarut dalam air`,`jumlah air tawar yang masuk ke laut`,`kedalaman air di muara sungai`,`banyaknya tumbuhan di tepi pantai`],
+ pemb:`Teks menyebut salinitas diukur dengan refraktometer dan dinyatakan dalam per mil, serta dijelaskan sebagai “kadar garam air”. Jadi salinitas adalah kadar garam yang terlarut dalam air.`},
+
+{lv:2,w:10,title:'Menganalisis Data Tabel Pengamatan',
+ stim:`<p>Kelompok siswa mengamati tutupan eceng gondok di tiga titik pengamatan di tepi Danau Limboto, Provinsi Gorontalo. Setiap titik dibagi menjadi petak berukuran 1 × 1 meter, lalu dicatat banyaknya petak yang tertutup eceng gondok. Pengamatan dilakukan pada pagi hari agar cahaya cukup dan air tenang sehingga petak mudah dihitung. Data hasil pengamatan disajikan pada tabel berikut.</p><table class="tbl"><tr><th>Titik</th><th>Jumlah petak</th><th>Petak tertutup</th></tr><tr><td>A</td><td>30</td><td>12</td></tr><tr><td>B</td><td>30</td><td>18</td></tr><tr><td>C</td><td>40</td><td>10</td></tr></table><p>Siswa kemudian menghitung persentase tutupan dengan membagi petak tertutup dengan jumlah petak dan mengalikannya 100. Hasil ini akan dilaporkan kepada kepala desa sebagai dasar gotong royong membersihkan danau, wujud cinta sesama dan cinta lingkungan.</p>`,
+ q:`Pernyataan yang sesuai dengan data tabel adalah ...`,
+ opts:[`Persentase tutupan tertinggi terdapat di titik B, yaitu 60%.`,`Persentase tutupan tertinggi terdapat di titik A, yaitu 40%.`,`Persentase tutupan di titik C adalah 10%.`,`Seluruh titik memiliki tutupan lebih dari 50%.`],
+ pemb:`A = 12÷30 = 40%; B = 18÷30 = 60%; C = 10÷40 = 25%. Tutupan tertinggi ada di titik B (60%). Titik C bukan 10% (itu jumlah petaknya), dan hanya titik B yang di atas 50%.`},
+
+{lv:2,w:10,title:'Menyusun Deskripsi Bagian dari Catatan Lapangan',
+ stim:`<p>Saat menyusuri pantai di Gorontalo, seorang siswa mencatat hasil pengamatan terhadap pohon kelapa, tumbuhan yang banyak ditemukan di pesisir Teluk Tomini. Catatan lapangannya: (1) batang tunggal, tidak bercabang, tinggi sekitar 15 meter; (2) daun menyirip dengan panjang 4–6 meter; (3) buah tersusun dalam tandan; (4) akar serabut menyebar di tanah berpasir.</p><p>Catatan itu akan dijadikan bagian deskripsi bagian dalam laporan. Guru mengingatkan bahwa deskripsi bagian harus menggambarkan ciri fisik secara rinci, hanya memuat data yang benar-benar ada pada catatan, dan menghindari kata yang menilai. Warga pesisir memanfaatkan hampir seluruh bagian pohon kelapa, mulai dari buah, daun, hingga batangnya. Kelapa merupakan salah satu karunia Allah Swt. yang patut disyukuri dengan merawat dan memanfaatkannya secara bijak.</p>`,
+ q:`Kalimat deskripsi bagian yang paling tepat berdasarkan catatan lapangan tersebut adalah ...`,
+ opts:[`Pohon kelapa memiliki batang tunggal tidak bercabang setinggi sekitar 15 meter dengan daun menyirip yang panjangnya 4–6 meter.`,`Pohon kelapa sangat indah dengan batang menjulang tinggi dan daun yang memesona siapa pun.`,`Pohon kelapa memiliki batang bercabang banyak setinggi 30 meter dengan daun lebar seperti payung.`,`Pohon kelapa bermanfaat untuk membuat minyak, santan, dan sapu lidi.`],
+ pemb:`Deskripsi bagian harus merinci ciri fisik sesuai data catatan. Pilihan lain memuat penilaian (“sangat indah”), data yang keliru (bercabang, 30 meter), atau justru deskripsi manfaat.`},
+
+{lv:2,w:10,title:'Mengevaluasi Berita dengan Tabayyun',
+ stim:`<p>Sebuah unggahan viral menyatakan bahwa “seluruh hutan mangrove di Teluk Tomini telah habis ditebang”. Unggahan itu tidak mencantumkan lokasi, waktu, maupun sumber data. Sebagian warga marah dan menyalahkan kelompok tertentu. Padahal, kelompok pengamat madrasah baru saja mengamati beberapa petak mangrove di pesisir Boalemo dan menemukan bahwa mangrove masih tumbuh di sana, walau ada beberapa bagian yang rusak.</p><p>Allah Swt. berfirman dalam Surah Al-Hujurat ayat 6, yang artinya, “Wahai orang-orang yang beriman, jika seseorang yang fasik datang kepadamu membawa berita, maka telitilah kebenarannya, agar kamu tidak mencelakakan suatu kaum karena kebodohan (kecerobohan).” Sikap moderat dan adil menuntut kita tidak menghakimi pihak mana pun sebelum bukti terkumpul. Murid diminta menentukan langkah terbaik menanggapi unggahan itu.</p>`,
+ q:`Langkah yang paling tepat dalam mengevaluasi informasi tersebut adalah ...`,
+ opts:[`memeriksa lokasi, waktu, dan sumber data, lalu membandingkannya dengan hasil pengamatan dan data instansi terkait`,`membagikan unggahan itu agar semua orang waspada`,`menyalahkan kelompok yang dianggap menebang mangrove`,`mengabaikan semua informasi tentang mangrove karena dianggap hoaks`],
+ pemb:`Tabayyun berarti meneliti: cek lokasi, waktu, sumber, dan bandingkan dengan data lapangan serta sumber resmi. Membagikan, menuduh, atau menolak semua informasi tanpa pemeriksaan bukanlah evaluasi yang benar.`},
+
+{lv:2,w:10,title:'Menarik Simpulan Objektif dari Data Berkala',
+ stim:`<p>Sebuah kelompok pelestari lingkungan di pesisir Gorontalo menanam mangrove selama tiga tahun berturut-turut dan memantau bibit yang bertahan hidup. Madrasah setempat membantu mencatat data (data ilustrasi) pada tabel berikut.</p><table class="tbl"><tr><th>Tahun</th><th>Bibit ditanam</th><th>Bibit hidup</th></tr><tr><td>2023</td><td>400</td><td>320</td></tr><tr><td>2024</td><td>500</td><td>400</td></tr><tr><td>2025</td><td>600</td><td>480</td></tr></table><p>Kegiatan ini didorong oleh kesadaran bahwa menjaga alam adalah bagian dari cinta tanah air dan ibadah kepada Allah Swt. Dalam menyusun simpulan, siswa harus menghitung terlebih dahulu persentase keberhasilan tiap tahun dan membandingkannya, bukan hanya melihat jumlah bibit hidup. Simpulan yang objektif ialah simpulan yang seluruh isinya dapat dibuktikan dari data, tanpa menambahkan dugaan penyebab yang belum diteliti.</p>`,
+ q:`Simpulan objektif yang paling tepat berdasarkan tabel adalah ...`,
+ opts:[`Jumlah bibit hidup meningkat tiap tahun, sedangkan persentase keberhasilan tetap 80%.`,`Persentase keberhasilan meningkat tiap tahun karena warga makin rajin merawat.`,`Persentase keberhasilan menurun karena jumlah bibit yang ditanam bertambah.`,`Tahun 2023 memiliki persentase keberhasilan tertinggi, yaitu 90%.`],
+ pemb:`320÷400 = 400÷500 = 480÷600 = 80%. Jumlah bibit hidup naik (320 → 400 → 480) tetapi persentasenya tetap. Pilihan lain keliru secara hitungan atau menambahkan sebab yang tidak ada di data.`},
+
+{lv:3,w:12,title:'Menilai Simpulan Berdasarkan Data Tren',
+ stim:`<p>Data ilustrasi berikut disederhanakan untuk keperluan latihan. Kelompok siswa menelaah catatan luas permukaan air Danau Limboto, Provinsi Gorontalo, pada beberapa tahun.</p><table class="tbl"><tr><th>Tahun</th><th>Luas permukaan (hektare)</th></tr><tr><td>2000</td><td>3.800</td></tr><tr><td>2010</td><td>3.300</td></tr><tr><td>2020</td><td>2.900</td></tr></table><p>Danau yang dangkal ini menerima endapan lumpur dari daerah tangkapan air sehingga sedimentasi diduga berperan dalam penyusutan, tetapi penyebab pastinya memerlukan penelitian lanjutan. Seorang siswa menulis bahwa “luas danau menyusut karena warga Gorontalo kurang peduli”. Siswa lain menulis simpulan yang hanya bersandar pada data. Al-Qur’an mengajarkan keadilan dalam bersaksi (QS. Al-Ma’idah: 8), sehingga penulis laporan tidak boleh menuduh tanpa bukti. Cinta tanah air dan cinta lingkungan diwujudkan dengan menyajikan data jujur, lalu mengajak semua pihak merawat danau.</p>`,
+ q:`Simpulan yang paling objektif dan didukung data adalah ...`,
+ opts:[`Luas permukaan menyusut 900 hektare (sekitar 24%) antara tahun 2000 dan 2020.`,`Luas permukaan menyusut 900 hektare karena warga kurang peduli.`,`Luas permukaan menyusut sekitar 600 hektare antara tahun 2000 dan 2020.`,`Luas permukaan menyusut hampir setengahnya sejak tahun 2000.`],
+ pemb:`3.800 − 2.900 = 900 ha; 900 ÷ 3.800 ≈ 23,7% (sekitar 24%). Pilihan kedua menuduh penyebab tanpa bukti, ketiga salah hitung, dan keempat melebih-lebihkan (penyusutan belum mencapai separuh).`},
+
+{lv:3,w:12,title:'Memperbaiki Desain Pengamatan dan Simpulan',
+ stim:`<p>Sekelompok siswa meneliti hubungan antara eceng gondok dan hasil tangkapan nelayan di Danau Limboto. Mereka mengamati satu titik selama satu minggu. Pada minggu itu tutupan eceng gondok sebesar 50% dan hasil tangkapan rata-rata nelayan 10 kilogram per hari. Berdasarkan data tersebut, mereka menulis simpulan: “Eceng gondok menyebabkan hasil tangkapan nelayan menurun.”</p><p>Guru menilai simpulan ini terlalu jauh karena data belum membandingkan kondisi lain, misalnya titik dengan tutupan lebih sedikit atau minggu sebelumnya. Dalam kajian ilmiah, dugaan hubungan sebab-akibat memerlukan data yang cukup, pembanding, dan pengulangan pengamatan. Sebagai pelajar yang mencintai ilmu dan lingkungan, siswa perlu berani memperbaiki desain pengamatan agar laporan mereka adil bagi nelayan dan pembaca.</p>`,
+ q:`Perbaikan yang paling tepat agar simpulan dapat dipertanggungjawabkan adalah ...`,
+ opts:[`menambah titik dan waktu pengamatan serta membandingkan tutupan eceng gondok dengan hasil tangkapan di tiap titik`,`mengganti kata “menyebabkan” menjadi “pasti menyebabkan” agar lebih meyakinkan`,`menghapus data hasil tangkapan dan hanya menulis pendapat guru`,`meminta nelayan menyetujui simpulan tanpa data tambahan`],
+ pemb:`Klaim sebab-akibat membutuhkan lebih banyak titik, waktu, dan pembanding. Memperkuat kata, menghapus data, atau meminta persetujuan tanpa data justru menjauhkan laporan dari sifat objektif.`},
+
+{lv:3,w:12,title:'Mengolah Data dan Memisahkan Fakta dari Saran',
+ stim:`<p>Dalam kegiatan observasi kebersihan pantai di Teluk Tomini, kelompok siswa menetapkan lima petak pengamatan, masing-masing berukuran 2 × 2 meter. Mereka menghitung seluruh sampah plastik yang terlihat dan menemukan total 120 buah. Kegiatan ini dilakukan bersama warga sebagai bentuk cinta lingkungan dan tanah air.</p><p>Allah Swt. berfirman dalam Surah Ar-Rum ayat 41 bahwa kerusakan di darat dan di laut timbul akibat perbuatan tangan manusia, agar mereka kembali ke jalan yang benar. Siswa lalu menulis paragraf penutup laporan. Guru menekankan dua hal: data yang disajikan harus diolah dengan benar, dan saran harus dipisahkan dari fakta agar pembaca dapat menilai sendiri. Kepadatan dihitung dengan membagi jumlah sampah dengan total luas petak.</p>`,
+ q:`Paragraf penutup yang objektif, benar secara hitungan, dan memisahkan fakta dari saran adalah ...`,
+ opts:[`Kepadatan sampah plastik 6 buah per meter persegi pada petak pengamatan. Saran: warga perlu mengadakan pembersihan pantai secara rutin.`,`Kepadatan sampah plastik 24 buah per meter persegi pada petak pengamatan. Saran: warga perlu mengadakan pembersihan pantai secara rutin.`,`Kepadatan sampah plastik 6 buah per meter persegi karena warga pesisir tidak peduli terhadap kebersihan.`,`Pantai Teluk Tomini sangat kotor sehingga tidak layak dikunjungi siapa pun karena sampahnya banyak sekali.`],
+ pemb:`Total luas = 5 × (2 × 2) = 20 m². Kepadatan = 120 ÷ 20 = 6 buah/m². Pilihan kedua keliru (24 adalah jumlah per petak), ketiga menuduh tanpa bukti, keempat berisi opini yang berlebihan.`}
+];
+PRAC.forEach(q=>{q.order=shuffle([0,1,2,3]);});
+
+/* ================= ENGINES ================= */
+function mkCheck(host,label,fn){const row=el('div','checkrow');const b=el('button','btn pri',label);b.type='button';b.onclick=fn;row.appendChild(b);const msg=el('div','engmsg');host.appendChild(row);host.appendChild(msg);return{btn:b,msg};}
+
+function mcEngine(host,cfg,cb,o){
+  o=o||{};let sel=-1,locked=false;
+  const wrap=el('div','mc');host.appendChild(wrap);
+  const btns=cfg.opts.map((t,i)=>{const b=el('button','opt',`<b>${LET[i]}</b><span>${t}</span>`);b.type='button';
+    b.onclick=()=>{if(locked)return;btns.forEach(x=>x.classList.remove('wrong','sel'));sel=i;b.classList.add('sel');if(ck)ck.btn.disabled=false;if(o.instant)check();};
+    wrap.appendChild(b);return b;});
+  let ck=null;
+  if(!o.instant){ck=mkCheck(host,'Periksa Jawaban',check);ck.btn.disabled=true;}
+  function check(){
+    if(locked||sel<0)return;const ok=sel===cfg.ans;
+    btns.forEach(b=>b.classList.remove('sel'));
+    if(ok){btns[sel].classList.add('right');locked=true;host.classList.add('locked');}
+    else{btns[sel].classList.add('wrong');if(!o.instant){btns[cfg.ans].classList.add('right');locked=true;host.classList.add('locked');}}
+    if(ck&&locked)ck.btn.disabled=true;
+    cb({ok:ok,correct:ok?1:0,total:1});
+  }
+  return{lock(){locked=true;host.classList.add('locked');if(ck)ck.btn.disabled=true;}};
+}
+
+function multiEngine(host,cfg,cb){
+  const n=cfg.items.length;const chosen=Array(n).fill(false);let locked=false;
+  const wrap=el('div','mc');host.appendChild(el('div','hint','Ketuk untuk mencentang. Boleh lebih dari satu.'));host.appendChild(wrap);
+  const btns=cfg.items.map((it,i)=>{const b=el('button','opt chk',`<b>☐</b><span>${it.t}</span>`);b.type='button';
+    b.onclick=()=>{if(locked)return;chosen[i]=!chosen[i];b.classList.toggle('sel',chosen[i]);b.firstChild.textContent=chosen[i]?'☑':'☐';};
+    wrap.appendChild(b);return b;});
+  const ck=mkCheck(host,'Periksa Jawaban',()=>{
+    if(locked)return;let c=0;
+    cfg.items.forEach((it,i)=>{const good=chosen[i]===it.c;if(good)c++;btns[i].classList.remove('sel','right','wrong');btns[i].classList.add(good?'right':'wrong');});
+    locked=true;host.classList.add('locked');ck.btn.disabled=true;cb({ok:c===n,correct:c,total:n});
+  });
+  return{lock(){locked=true;host.classList.add('locked');ck.btn.disabled=true;}};
+}
+
+function dndEngine(host,cfg,cb){
+  const n=cfg.items.length;const place=Array(n).fill(-1);let sel=-1,locked=false,marks=null;
+  const order=shuffle(cfg.items.map((_,i)=>i));
+  host.appendChild(el('div','hint','Seret kartu ke kolom tujuan, atau ketuk kartu lalu ketuk kolom. Ketuk kartu di kolom untuk mengembalikannya.'));
+  const pool=el('div','dnd-pool');const zw=el('div','dnd-zones');host.appendChild(pool);host.appendChild(zw);
+  const bodies=cfg.zones.map((z,k)=>{
+    const w=el('div','zone');w.appendChild(el('div','zone-t',z));const b=el('div','zone-b');w.appendChild(b);zw.appendChild(w);
+    w.addEventListener('click',e=>{if(locked||e.target.closest('.chip'))return;if(sel>=0){place[sel]=k;sel=-1;marks=null;render();}});
+    w.addEventListener('dragover',e=>{e.preventDefault();w.classList.add('over');});
+    w.addEventListener('dragleave',()=>w.classList.remove('over'));
+    w.addEventListener('drop',e=>{e.preventDefault();w.classList.remove('over');if(locked)return;const i=parseInt(e.dataTransfer.getData('text/plain'),10);if(!isNaN(i)){place[i]=k;sel=-1;marks=null;render();}});
+    return b;});
+  pool.addEventListener('dragover',e=>e.preventDefault());
+  pool.addEventListener('drop',e=>{e.preventDefault();if(locked)return;const i=parseInt(e.dataTransfer.getData('text/plain'),10);if(!isNaN(i)){place[i]=-1;sel=-1;marks=null;render();}});
+  function chip(i){
+    const c=el('div','chip'+(sel===i?' sel':''),cfg.items[i].t);c.draggable=!locked;
+    if(marks&&place[i]>=0)c.classList.add(marks[i]?'right':'wrong');
+    c.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',String(i));e.dataTransfer.effectAllowed='move';});
+    c.addEventListener('click',e=>{e.stopPropagation();if(locked)return;if(place[i]>=0){place[i]=-1;sel=-1;marks=null;}else{sel=(sel===i?-1:i);}render();});
+    return c;
+  }
+  function render(){
+    pool.innerHTML='';bodies.forEach(b=>b.innerHTML='');
+    order.forEach(i=>{if(place[i]<0)pool.appendChild(chip(i));});
+    if(!pool.children.length)pool.appendChild(el('span','hint','Semua kartu sudah ditempatkan ✔'));
+    order.forEach(i=>{if(place[i]>=0)bodies[place[i]].appendChild(chip(i));});
+  }
+  render();
+  const ck=mkCheck(host,'Periksa Jawaban',()=>{
+    if(locked)return;
+    if(place.some(p=>p<0)){ck.msg.textContent='Tempatkan semua kartu terlebih dahulu.';return;}
+    ck.msg.textContent='';marks=place.map((p,i)=>p===cfg.items[i].z);const c=marks.filter(Boolean).length;
+    render();cb({ok:c===n,correct:c,total:n});
+  });
+  return{lock(){locked=true;host.classList.add('locked');ck.btn.disabled=true;render();}};
+}
+
+function sortEngine(host,cfg,cb){
+  const n=cfg.items.length;let order=shuffleNotSame(cfg.items.map((_,i)=>i));let sel=-1,locked=false,marks=null;
+  host.appendChild(el('div','hint','Ketuk dua kartu untuk menukar posisi, gunakan tombol ▲▼, atau seret kartu ke posisi baru.'));
+  const list=el('div','sort-list');host.appendChild(list);
+  function swap(a,b){const t=order[a];order[a]=order[b];order[b]=t;}
+  function render(){
+    list.innerHTML='';
+    order.forEach((idx,pos)=>{
+      const r=el('div','sort-row'+(sel===pos?' sel':'')+(marks?(marks[pos]?' right':' wrong'):''));r.draggable=!locked;
+      r.innerHTML=`<span class="no">${pos+1}</span><span class="tx">${cfg.items[idx]}</span><span class="ar"><button type="button" data-d="-1" aria-label="Naikkan">▲</button><button type="button" data-d="1" aria-label="Turunkan">▼</button></span>`;
+      r.addEventListener('click',e=>{
+        if(locked)return;const b=e.target.closest('button');marks=null;
+        if(b){const t=pos+parseInt(b.dataset.d,10);if(t>=0&&t<n){swap(pos,t);}sel=-1;render();return;}
+        if(sel<0)sel=pos;else if(sel===pos)sel=-1;else{swap(sel,pos);sel=-1;}render();
+      });
+      r.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',String(pos));e.dataTransfer.effectAllowed='move';});
+      r.addEventListener('dragover',e=>e.preventDefault());
+      r.addEventListener('drop',e=>{e.preventDefault();if(locked)return;const f=parseInt(e.dataTransfer.getData('text/plain'),10);if(isNaN(f)||f===pos)return;const v=order.splice(f,1)[0];order.splice(pos,0,v);sel=-1;marks=null;render();});
+      list.appendChild(r);
+    });
+  }
+  render();
+  const ck=mkCheck(host,'Periksa Urutan',()=>{
+    if(locked)return;marks=order.map((idx,pos)=>idx===pos);const c=marks.filter(Boolean).length;sel=-1;render();cb({ok:c===n,correct:c,total:n});
+  });
+  return{lock(){locked=true;host.classList.add('locked');ck.btn.disabled=true;render();}};
+}
+
+function matchEngine(host,cfg,cb){
+  const n=cfg.pairs.length;const map=Array(n).fill(-1);const rOrder=shuffleNotSame(cfg.pairs.map((_,i)=>i));let selL=-1,locked=false,marks=null;
+  host.appendChild(el('div','hint','Ketuk satu kartu di kiri, lalu ketuk pasangannya di kanan. Ketuk kartu kiri yang sudah berpasangan untuk melepasnya.'));
+  const wrap=el('div','match');const L=el('div','mcol'),R=el('div','mcol');wrap.appendChild(L);wrap.appendChild(R);host.appendChild(wrap);
+  function render(){
+    L.innerHTML='';R.innerHTML='';
+    cfg.pairs.forEach((p,i)=>{
+      const b=el('button','mt'+(selL===i?' sel':'')+(marks&&map[i]>=0?(marks[i]?' right':' wrong'):''),`<i class="dot" style="background:${map[i]>=0?COL[i%6]:'#ccc'}"></i><span>${p[0]}</span>`);b.type='button';
+      b.onclick=()=>{if(locked)return;marks=null;if(map[i]>=0){map[i]=-1;selL=i;}else{selL=(selL===i?-1:i);}render();};
+      L.appendChild(b);
+    });
+    rOrder.forEach(r=>{
+      const owner=map.indexOf(r);
+      const b=el('button','mt'+(marks&&owner>=0?(marks[owner]?' right':' wrong'):''),`<i class="dot" style="background:${owner>=0?COL[owner%6]:'#ccc'}"></i><span>${cfg.pairs[r][1]}</span>`);b.type='button';
+      if(owner>=0)b.style.borderColor=COL[owner%6];
+      b.onclick=()=>{if(locked||selL<0)return;marks=null;const prev=map.indexOf(r);if(prev>=0)map[prev]=-1;map[selL]=r;selL=-1;render();};
+      R.appendChild(b);
+    });
+  }
+  render();
+  const ck=mkCheck(host,'Periksa Pasangan',()=>{
+    if(locked)return;if(map.some(m=>m<0)){ck.msg.textContent='Jodohkan semua kartu terlebih dahulu.';return;}
+    ck.msg.textContent='';marks=map.map((m,i)=>m===i);const c=marks.filter(Boolean).length;render();cb({ok:c===n,correct:c,total:n});
+  });
+  return{lock(){locked=true;host.classList.add('locked');ck.btn.disabled=true;render();}};
+}
+
+function buildEngine(type,host,cfg,cb,o){
+  if(type==='mc'){const sh=shuffleOpts(cfg);return mcEngine(host,sh,cb,o);}
+  if(type==='multi')return multiEngine(host,cfg,cb);
+  if(type==='dnd')return dndEngine(host,cfg,cb);
+  if(type==='sort')return sortEngine(host,cfg,cb);
+  return matchEngine(host,cfg,cb);
+}
+
+/* ================= FLOW: COVER ================= */
+const AV_FB=`onerror="this.outerHTML='<div class=&quot;avatar-fb&quot;>YE</div>'"`;
+setTimeout(()=>{if($('#splash').classList.contains('active'))go('cover');},1900);
+$('#btnDev').onclick=()=>openModal(
+  `<div class="dev"><img class="avatar" src="https://iili.io/nv4Dl2V.jpg" alt="Foto Yulinda Elfriyanti, S.Pd" ${AV_FB}><h3>Yulinda Elfriyanti, S.Pd</h3><p><b>🏫 MAN 1 Boalemo</b></p><p>📧 <a href="mailto:yulindaelfryanti1998@gmail.com">yulindaelfryanti1998@gmail.com</a></p><p style="margin-top:8px;font-size:.92rem">Pengembang Media Pembelajaran Interaktif Bahasa Indonesia untuk Madrasah Aliyah.</p></div>`,
+  [{t:'⬅ Kembali ke Cover',c:'pri'}]);
+$('#btnGoal').onclick=()=>openModal(
+  `<h3 class="modal-t">🎯 Tujuan Pembelajaran</h3><p style="text-align:center;font-weight:700">Murid mampu mengevaluasi informasi faktual dalam teks laporan hasil observasi agar dapat menyusun dan menyajikan laporan hasil observasi secara objektif sebagai wujud cinta ilmu dan cinta lingkungan.</p>
+   <div class="blk ayat" style="margin-top:12px"><h3>🕌 Ayat Pembuka</h3>${ayatHTML(['alaq1','alaq5'])}</div>
+   <div class="blk kbc"><h3>💗 Pesan Kurikulum Berbasis Cinta</h3><p>Belajarlah dengan penuh cinta: <b>cinta kepada Allah dan Rasul-Nya</b>, <b>cinta kepada sesama manusia</b>, <b>cinta kepada alam dan lingkungan</b>, serta <b>cinta kepada tanah air</b>. Ilmu yang jujur dan bermanfaat adalah wujud rasa syukur kita.</p></div>`,
+  [{t:'⬅ Kembali ke Cover',c:'pri'}]);
+$('#btnStart').onclick=()=>go('identity');
+
+/* ================= FLOW: IDENTITAS ================= */
+$('#btnIdBack').onclick=()=>go('cover');
+$('#formId').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=$('#inName').value.trim(),k=$('#inKelas').value.trim();
+  $('#fName').classList.toggle('err',n.length<3);$('#fKelas').classList.toggle('err',k.length<1);
+  if(n.length<3){$('#inName').focus();return;}
+  if(k.length<1){$('#inKelas').focus();return;}
+  S.name=n;S.kelas=k;S.introIdx=0;renderIntro();go('intro');
+});
+['inName','inKelas'].forEach(id=>$('#'+id).addEventListener('input',()=>{$('#f'+(id==='inName'?'Name':'Kelas')).classList.remove('err');}));
+
+/* ================= FLOW: PENGANTAR ================= */
+function introSlides(){return[
+ {ico:'🌸',t:`Selamat Datang, ${esc(S.name)}!`,b:`<p>Selamat datang di media pembelajaran <b>“Teks Laporan Hasil Observasi”</b> untuk Kelas X / Fase E. Bersama-sama kita akan belajar mengamati alam Gorontalo — Teluk Tomini, Danau Limboto, dan dataran agraris — lalu melaporkannya secara objektif dengan penuh cinta pada ilmu dan lingkungan.</p>`},
+ {ico:'🗺️',t:'Tiga Tahap Petualangan',b:`<ul><li><b>📖 Belajar</b> — 6 slide materi + tantangan pemantik di setiap slide.</li><li><b>🎮 Bermain</b> — 10 tantangan seru dengan stimulus literasi dan numerasi.</li><li><b>✍️ Berlatih</b> — 10 soal asesmen berjenjang (total 100 poin).</li></ul><p style="margin-top:8px">Menu dibuka bertahap 🔒➜🔓: selesaikan satu tahap untuk membuka tahap berikutnya.</p>`},
+ {ico:'👆',t:'Cara Berinteraksi',b:`<ul><li><b>Pilihan ganda</b>: ketuk pilihan jawabanmu.</li><li><b>Drag &amp; Drop</b>: seret kartu dengan mouse, atau di HP <i>ketuk kartu lalu ketuk kolom tujuan</i>.</li><li><b>Mengurutkan</b>: ketuk dua kartu untuk menukar, atau pakai tombol ▲▼.</li><li><b>Menjodohkan</b>: ketuk kartu kiri, lalu ketuk pasangannya di kanan.</li></ul>`},
+ {ico:'📄',t:'Penilaian dan Laporan',b:`<p>Di akhir, kamu akan mendapat <b>Laporan Hasil Belajar</b> berisi skor Bermain, nilai Berlatih, predikat, penguasaan tiap level, catatan Kurikulum Berbasis Cinta, dan rekomendasi guru — yang dapat diunduh sebagai PDF. Kerjakan dengan jujur dan semangat! 💗</p>`}
+];}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderIntro(){
+  const sl=introSlides(),i=S.introIdx,d=sl[i];
+  $('#introSlide').innerHTML=`<div class="big">${d.ico}</div><h2>${d.t}</h2>${d.b}`;
+  $('#introDots').innerHTML=sl.map((_,k)=>`<span class="dot ${k===i?'cur':''}"></span>`).join('');
+  $('#introPrev').style.visibility='visible';
+  $('#introNext').textContent=i===sl.length-1?'Masuk ke Menu Utama 🏠':'Selanjutnya ➜';
+  $('#introSlide').style.animation='none';void $('#introSlide').offsetWidth;$('#introSlide').style.animation='';
+}
+$('#introPrev').onclick=()=>{if(S.introIdx===0){go('identity');return;}S.introIdx--;renderIntro();};
+$('#introNext').onclick=()=>{const L=introSlides().length;if(S.introIdx<L-1){S.introIdx++;renderIntro();}else{renderMenu();go('menu');}};
+
+/* ================= FLOW: MENU ================= */
+function progressPct(){
+  const l=S.learnDone.filter(Boolean).length/6*34;
+  const p=S.play.length/10*33;
+  const t=S.prac.done?33:0;
+  return Math.round(l+p+t);
+}
+function renderMenu(){
+  $('#pfAv').textContent=(S.name.trim()[0]||'A').toUpperCase();
+  $('#pfName').textContent=S.name;$('#pfKelas').textContent='Kelas '+S.kelas+' • Bahasa Indonesia • Fase E';
+  const pc=progressPct();$('#pfBar').style.width=pc+'%';$('#pfProg').textContent='Progres '+pc+'%';
+  const learnAll=S.learnDone.every(Boolean),playAll=S.play.length===10;
+  const cards=[
+   {k:'belajar',ico:'📖',t:'BELAJAR',d:'6 slide materi mendalam dengan tantangan pemantik',locked:false,done:learnAll,st:learnAll?'✅ Selesai':'🔓 Terbuka'},
+   {k:'bermain',ico:'🎮',t:'BERMAIN',d:'10 tantangan literasi & numerasi',locked:!S.unlock.play,done:playAll,st:playAll?'✅ Selesai':(S.unlock.play?'🔓 Terbuka':'🔒 Terkunci')},
+   {k:'berlatih',ico:'✍️',t:'BERLATIH',d:'10 soal asesmen berjenjang (100 poin)',locked:!S.unlock.practice,done:S.prac.done,st:S.prac.done?'✅ Selesai':(S.unlock.practice?'🔓 Terbuka':'🔒 Terkunci')}
+  ];
+  const g=$('#menuGrid');g.innerHTML='';
+  cards.forEach(c=>{
+    const b=el('button','glass mcard'+(c.locked?' locked':'')+(c.done?' done':''),`<div class="mi">${c.ico}</div><div class="tx"><h3>${c.t}</h3><p>${c.d}</p></div><span class="st">${c.st}</span>`);b.type='button';
+    b.onclick=()=>enter(c.k);g.appendChild(b);
+  });
+}
+function enter(k){
+  if(k==='belajar'){const first=S.learnDone.indexOf(false);renderLearn(first<0?0:first);go('belajar');return;}
+  if(k==='bermain'){
+    if(!S.unlock.play){openModal(`<h3 class="modal-t">🔒 Menu Masih Terkunci</h3><p style="text-align:center">Menu <b>BERMAIN</b> akan terbuka setelah kamu menyelesaikan seluruh <b>6 slide materi</b> pada menu <b>BELAJAR</b> beserta tantangannya. Ayo belajar dulu, ya! 📖</p>`,[{t:'Nanti dulu'},{t:'Ke Menu Belajar',c:'pri',fn:()=>enter('belajar')}]);return;}
+    if(S.play.length===10)renderRekap();else renderPlay(S.play.length);go('bermain');return;}
+  if(!S.unlock.practice){openModal(`<h3 class="modal-t">🔒 Menu Masih Terkunci</h3><p style="text-align:center">Menu <b>BERLATIH</b> akan terbuka setelah kamu menuntaskan <b>10 tantangan</b> pada menu <b>BERMAIN</b>${S.unlock.play?'':', yang sendiri terbuka setelah kamu menyelesaikan menu BELAJAR'}. Semangat! 🎮`+`</p>`,[{t:'Nanti dulu'},{t:S.unlock.play?'Ke Menu Bermain':'Ke Menu Belajar',c:'pri',fn:()=>enter(S.unlock.play?'bermain':'belajar')}]);return;}
+  if(S.prac.done)renderPracResult();else renderPrac(S.prac.idx);go('berlatih');
+}
+['learnBack','playBack','pracBack','repBack'].forEach(id=>$('#'+id).onclick=()=>{renderMenu();go('menu');});
+
+/* ================= FLOW: BELAJAR ================= */
+function renderLearn(i){
+  S.learnIdx=i;const d=LEARN[i];const host=$('#learnBody');host.innerHTML='';
+  $('#learnProg').innerHTML=LEARN.map((_,k)=>`<span class="dot ${k===i?'cur':''} ${S.learnDone[k]&&k!==i?'done':''}"></span>`).join('');
+  $('#learnCount').textContent=`Slide ${i+1} dari 6`;
+  const card=el('article','glass slide-card',
+   `<div class="s-head"><span class="s-ico">${d.ico}</span><div><div class="s-no">Materi ${i+1} dari 6</div><h2>${d.title}</h2></div></div>
+    <div class="blk"><h3>📘 Uraian Materi</h3>${d.materi}</div>
+    <div class="blk local"><h3>🌿 Konteks Lokal: Provinsi Gorontalo</h3><p>${d.lokal}</p></div>
+    <div class="blk kbc"><h3>💗 Kurikulum Berbasis Cinta (KBC)</h3><p>${d.kbc}</p></div>
+    <div class="blk ayat"><h3>🕌 Integrasi Ayat Al-Qur’an</h3>${ayatHTML(d.ayat,d.kor)}</div>`);
+  host.appendChild(card);
+  const act=el('div','activity');act.innerHTML=`<h3>🎯 Tantangan Pemantik ${S.learnDone[i]?'(selesai ✅)':'— wajib diselesaikan'}</h3><p class="prompt">${d.act.q}</p>`;
+  const area=el('div');const fb=el('div','fb');act.appendChild(area);act.appendChild(fb);host.appendChild(act);
+  if(S.learnDone[i]){fb.className='fb ok';fb.innerHTML=`✅ Tantangan sudah kamu selesaikan.<small>${d.act.fb}</small>`;}
+  else{
+    const o={instant:true};
+    const cb=res=>{
+      if(res.ok){fb.className='fb ok';fb.innerHTML=`🎉 Hebat, jawabanmu tepat!<small>${d.act.fb}</small>`;ctl.lock();markLearnDone(i);}
+      else{fb.className='fb no';fb.innerHTML=`💡 Belum tepat. Baca lagi uraian materi di atas, lalu coba lagi.`;}
+    };
+    const ctl=buildEngine(d.act.type,area,d.act.type==='mc'?{opts:d.act.opts,ans:d.act.ans}:d.act.cfg,cb,o);
+  }
+  updateLearnNav();
+  $('#belajar').scrollTop=0;
+}
+function markLearnDone(i){
+  S.learnDone[i]=true;
+  $('#learnProg').innerHTML=LEARN.map((_,k)=>`<span class="dot ${k===i?'cur':''} ${S.learnDone[k]&&k!==i?'done':''}"></span>`).join('');
+  if(S.learnDone.every(Boolean))S.unlock.play=true;
+  updateLearnNav();
+}
+function updateLearnNav(){
+  const i=S.learnIdx;$('#learnPrev').disabled=i===0;
+  const nx=$('#learnNext');nx.disabled=!S.learnDone[i];
+  nx.textContent=i===5?'Selesai Belajar ✓':'Selanjutnya ➜';
+}
+$('#learnPrev').onclick=()=>{if(S.learnIdx>0)renderLearn(S.learnIdx-1);};
+$('#learnNext').onclick=()=>{
+  const i=S.learnIdx;if(!S.learnDone[i])return;
+  if(i<5){renderLearn(i+1);return;}
+  S.unlock.play=true;renderMenu();go('menu');
+  openModal(`<h3 class="modal-t">🔓 Menu BERMAIN Terbuka!</h3><p style="text-align:center">Selamat, ${esc(S.name)}! Kamu telah menuntaskan semua materi. Sekarang saatnya menguji kemampuanmu lewat <b>10 tantangan seru</b>. 🎮</p>`,[{t:'Nanti'},{t:'Main Sekarang',c:'pri',fn:()=>enter('bermain')}]);
+};
+
+/* ================= FLOW: BERMAIN ================= */
+function playDots(i){$('#playProg').innerHTML=PLAY.map((_,k)=>`<span class="dot ${k===i?'cur':''} ${k<S.play.length&&k!==i?'done':''}"></span>`).join('');}
+function renderPlay(i){
+  const d=PLAY[i];const host=$('#playBody');host.innerHTML='';playDots(i);
+  $('#playCount').textContent=`Tantangan ${i+1} dari 10`;
+  const tot=S.play.reduce((a,b)=>a+b.pts,0);
+  const card=el('article','glass slide-card',
+   `<div class="row" style="justify-content:space-between"><span class="mech">${d.ico} ${d.mech}</span><span class="badge pk">Skor sementara: ${tot}</span></div>
+    <h2 style="color:var(--rose-d);margin:10px 0">Tantangan ${i+1}: ${d.title}</h2>
+    <div class="stim"><h3>📄 Stimulus Literasi &amp; Numerasi</h3>${d.stim}</div>
+    <div class="task">❓ ${d.task}</div>`);
+  const area=el('div');const fb=el('div','fb');const nav=el('div','navrow');
+  const nx=el('button','btn pri',i<9?'Tantangan Berikutnya ➜':'Lihat Rekap Performa 🏆');nx.type='button';nx.disabled=true;nav.appendChild(nx);
+  card.appendChild(area);card.appendChild(fb);card.appendChild(nav);host.appendChild(card);
+  const cb=res=>{
+    const pts=Math.round(10*res.correct/res.total);
+    S.play[i]={pts:pts,ok:res.ok,correct:res.correct,total:res.total,mech:d.mech,detail:res.detail||('Hasil tantangan: '+res.correct+' dari '+res.total+' benar; jenis '+d.mech)};
+    sendResult('Bermain', res.correct, Math.max(0,res.total-res.correct), [{
+      nomor:i+1, judul:d.title, pertanyaan:plainText(d.task),
+      jawaban:S.play[i].detail, benar:res.correct, salah:Math.max(0,res.total-res.correct)
+    }], pts);
+    ctl.lock();playDots(i);
+    fb.className='fb '+(res.ok?'ok':'no');
+    fb.innerHTML=(res.ok?`🎉 Tepat sekali! +${pts} poin`:`💡 Belum sepenuhnya tepat (${res.correct}/${res.total} benar). +${pts} poin`)+`<small><b>Pembahasan:</b> ${d.fb}</small>`;
+    nx.disabled=false;nx.focus({preventScroll:true});
+    if(i===9){S.unlock.practice=true;}
+  };
+  const ctl=buildEngine(d.type,area,d.cfg,cb,{});
+  $('#bermain').scrollTop=0;
+  nx.onclick=()=>{if(i<9)renderPlay(i+1);else{renderRekap();}};
+}
+function playTotals(){const t=S.play.reduce((a,b)=>a+b.pts,0);const perfect=S.play.filter(p=>p.ok).length;return{total:t,acc:Math.round(t/100*100),perfect:perfect};}
+function renderRekap(){
+  const tt=playTotals();const host=$('#playBody');host.innerHTML='';playDots(9);$('#playCount').textContent='Rekap Performa';
+  S.unlock.practice=true;
+  const msg=tt.total>=80?'Luar biasa! Kamu sangat siap untuk asesmen. 🌟':tt.total>=60?'Bagus! Sedikit pengulangan materi akan membuatmu lebih mantap. 👍':'Tetap semangat! Buka lagi menu Belajar untuk memperkuat pemahamanmu. 💪';
+  const rows=S.play.map((p,i)=>`<tr><td>${i+1}</td><td>${p.mech}</td><td>${p.correct}/${p.total}</td><td>${p.pts}/10</td></tr>`).join('');
+  const card=el('article','glass slide-card center',
+   `<div style="font-size:60px">🏆</div><h2 style="color:var(--rose-d)">Rekap Performa Bermain</h2>
+    <div class="big-score">${tt.total}<span style="font-size:1.2rem">/100</span></div>
+    <div class="scorebar"><i style="width:${tt.acc}%"></i></div>
+    <div class="stats"><div class="stat"><b>${tt.total}</b>Total Skor</div><div class="stat"><b>${tt.acc}%</b>Akurasi</div><div class="stat"><b>${tt.perfect}/10</b>Tantangan Sempurna</div></div>
+    <p style="font-weight:700;margin-bottom:10px">${msg}</p>
+    <table class="tbl" style="margin:8px auto"><tr><th>No</th><th>Jenis</th><th>Benar</th><th>Poin</th></tr>${rows}</table>
+    <div class="blk ayat" style="text-align:left"><h3>🕌 Pengingat</h3><p>“Dan janganlah engkau mengikuti sesuatu yang engkau tidak mempunyai ilmu tentangnya.” (QS. Al-Isra’ [17]: 36) — terus belajar dan teliti, ya!</p></div>
+    <p style="margin:10px 0"><b>🔓 Menu BERLATIH telah terbuka!</b></p>
+    <div class="navrow"><button class="btn ghost" id="rkMenu" type="button">🏠 Ke Menu Utama</button><button class="btn pri" id="rkGo" type="button">Mulai Berlatih ✍️</button></div>`);
+  host.appendChild(card);$('#bermain').scrollTop=0;
+  $('#rkMenu').onclick=()=>{renderMenu();go('menu');};$('#rkGo').onclick=()=>enter('berlatih');
+}
+
+/* ================= FLOW: BERLATIH ================= */
+const LVNAME={1:'Level 1 — Dasar / Pemahaman',2:'Level 2 — Sedang / Aplikasi & Penerapan',3:'Level 3 — Tinggi / Penalaran HOTS & Pemecahan Masalah'};
+function pracDots(i){$('#pracProg').innerHTML=PRAC.map((_,k)=>`<span class="dot ${k===i?'cur':''} ${S.prac.ans[k]>=0&&k!==i?'done':''}"></span>`).join('');}
+function renderPrac(i){
+  S.prac.idx=i;const q=PRAC[i];const host=$('#pracBody');host.innerHTML='';pracDots(i);$('#pracCount').textContent=`Soal ${i+1} dari 10`;
+  if(i===0&&!S.prac.started){
+    S.prac.started=true;
+    const card=el('article','glass slide-card',
+     `<h2 style="color:var(--rose-d)">✍️ Petunjuk Asesmen</h2>
+      <ul style="margin:8px 0 8px 22px"><li>Terdapat <b>10 soal pilihan ganda</b> dengan total <b>100 poin</b>. Setiap soal memiliki stimulus bacaan/tabel.</li><li><span class="lvl l1">Level 1</span> Nomor 1–3, @8 poin (Dasar/Pemahaman)</li><li><span class="lvl l2">Level 2</span> Nomor 4–7, @10 poin (Aplikasi &amp; Penerapan)</li><li><span class="lvl l3">Level 3</span> Nomor 8–10, @12 poin (Penalaran HOTS &amp; Pemecahan Masalah)</li><li>Kamu boleh kembali ke soal sebelumnya sebelum mengirim jawaban. Pembahasan muncul setelah selesai.</li></ul>
+      <p style="margin:8px 0">Kerjakan dengan jujur — kejujuran adalah bagian dari akhlak mulia. 💗</p>
+      <div class="navrow"><button class="btn pri" id="pracGo" type="button">Mulai Mengerjakan ➜</button></div>`);
+    host.appendChild(card);$('#pracGo').onclick=()=>renderPrac(0);return;
+  }
+  const card=el('article','glass slide-card',
+   `<div class="row" style="justify-content:space-between"><span class="lvl l${q.lv}">Level ${q.lv} • ${LVNAME[q.lv].split('— ')[1]}</span><span class="badge pk">Bobot ${q.w} poin</span></div>
+    <h2 style="color:var(--rose-d);margin:10px 0">Soal ${i+1}: ${q.title}</h2>
+    <div class="stim"><h3>📄 Stimulus</h3>${q.stim}</div>
+    <div class="task">❓ ${q.q}</div><div id="pOpts"></div>
+    <div class="navrow"><button class="btn ghost" id="pPrev" type="button">⬅ Sebelumnya</button><button class="btn pri" id="pNext" type="button"></button></div>`);
+  host.appendChild(card);
+  const op=$('#pOpts');
+  q.order.forEach((orig,k)=>{
+    const b=el('button','opt'+(S.prac.ans[i]===orig?' sel':''),`<b>${LET[k]}</b><span>${q.opts[orig]}</span>`);b.type='button';
+    b.onclick=()=>{S.prac.ans[i]=orig;[...op.children].forEach(x=>x.classList.remove('sel'));b.classList.add('sel');pracDots(i);updNext();};
+    op.appendChild(b);
+  });
+  const nx=$('#pNext');
+  function updNext(){nx.disabled=S.prac.ans[i]<0;nx.textContent=i<9?'Simpan & Lanjut ➜':'Selesai & Kirim ✓';}
+  updNext();
+  $('#pPrev').disabled=i===0;$('#pPrev').onclick=()=>{if(i>0)renderPrac(i-1);};
+  nx.onclick=()=>{
+    if(S.prac.ans[i]<0)return;
+    if(i<9){renderPrac(i+1);return;}
+    const un=S.prac.ans.map((a,k)=>a<0?k+1:null).filter(Boolean);
+    if(un.length){openModal(`<h3 class="modal-t">⚠️ Masih Ada Soal Kosong</h3><p style="text-align:center">Soal nomor <b>${un.join(', ')}</b> belum dijawab. Lengkapi dahulu sebelum mengirim.</p>`,[{t:'Kembali ke Soal',c:'pri',fn:()=>renderPrac(un[0]-1)}]);return;}
+    openModal(`<h3 class="modal-t">Kirim Jawaban?</h3><p style="text-align:center">Setelah dikirim, jawaban tidak dapat diubah dan hasil akan langsung ditampilkan.</p>`,[{t:'Periksa Lagi'},{t:'Ya, Kirim',c:'pri',fn:finishPrac}]);
+  };
+  $('#berlatih').scrollTop=0;
+}
+function calcPrac(){
+  const lv={1:{s:0,m:0,c:0,n:0},2:{s:0,m:0,c:0,n:0},3:{s:0,m:0,c:0,n:0}};let tot=0;
+  PRAC.forEach((q,i)=>{const L=lv[q.lv];L.m+=q.w;L.n++;if(S.prac.ans[i]===0){L.s+=q.w;L.c++;tot+=q.w;}});
+  return{lv:lv,total:tot};
+}
+function predikat(n){return n>=90?{p:'A',t:'Sangat Baik'}:n>=80?{p:'B',t:'Baik'}:n>=70?{p:'C',t:'Cukup'}:{p:'D',t:'Perlu Bimbingan'};}
+function finishPrac(){
+  S.prac.done=true;S.prac.res=calcPrac();
+  const details=PRAC.map((q,i)=>{
+    const a=S.prac.ans[i], correct=a===0;
+    return {nomor:i+1, judul:q.title, pertanyaan:plainText(q.q),
+      jawaban:a>=0?q.opts[a]:'(tidak dijawab)', kunci:q.opts[0],
+      status:correct?'Benar':'Salah', benar:correct?1:0, salah:correct?0:1};
+  });
+  const benar=details.filter(x=>x.status==='Benar').length;
+  sendResult('Berlatih',benar,details.length-benar,details,S.prac.res.total);
+  renderPracResult();
+}
+function levelStatus(pct){return pct>=80?'Menguasai':pct>=60?'Berkembang':'Perlu Bimbingan';}
+function renderPracResult(){
+  const r=S.prac.res||calcPrac();const pr=predikat(r.total);const host=$('#pracBody');host.innerHTML='';
+  $('#pracCount').textContent='Hasil Berlatih';$('#pracProg').innerHTML='';
+  const lvh=[1,2,3].map(k=>{const L=r.lv[k],p=Math.round(L.s/L.m*100);return `<div class="stat"><span class="lvl l${k}">Level ${k}</span><b>${L.s}/${L.m}</b>${L.c}/${L.n} benar • ${levelStatus(p)}</div>`;}).join('');
+  const rev=PRAC.map((q,i)=>{const ok=S.prac.ans[i]===0;const ua=S.prac.ans[i]>=0?q.opts[S.prac.ans[i]]:'(tidak dijawab)';
+    return `<details class="rev ${ok?'ok':''}"><summary>${ok?'✅':'❌'} Soal ${i+1} • Level ${q.lv} • ${ok?'+'+q.w:'0'} poin</summary><p><b>${q.q}</b></p><p>Jawabanmu: ${ua}</p><p>Kunci: ${q.opts[0]}</p><p><b>Pembahasan:</b> ${q.pemb}</p></details>`;}).join('');
+  const card=el('article','glass slide-card center',
+   `<div style="font-size:60px">🎓</div><h2 style="color:var(--rose-d)">Hasil Asesmen Berlatih</h2>
+    <div class="big-score">${r.total}<span style="font-size:1.2rem">/100</span></div>
+    <div class="badge" style="font-size:1rem;margin:8px 0">Predikat ${pr.p} — ${pr.t}</div>
+    <div class="scorebar"><i style="width:${r.total}%"></i></div>
+    <div class="stats">${lvh}</div>
+    <div style="text-align:left"><h3 style="color:var(--rose-d);margin:10px 0">📝 Pembahasan Soal</h3>${rev}</div>
+    <div class="navrow" style="margin-top:14px"><button class="btn ghost" id="prMenu" type="button">🏠 Menu Utama</button><button class="btn pri" id="prRep" type="button">📄 Lihat Laporan Hasil Belajar</button></div>`);
+  host.appendChild(card);$('#berlatih').scrollTop=0;
+  $('#prMenu').onclick=()=>{renderMenu();go('menu');};$('#prRep').onclick=()=>{buildReport();go('laporan');};
+}
+
+/* ================= LAPORAN ================= */
+function buildReport(){
+  const r=S.prac.res||calcPrac();const pr=predikat(r.total);const pt=playTotals();
+  const tgl=new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const L=r.lv;const pct=k=>Math.round(L[k].s/L[k].m*100);
+  const weakest=[1,2,3].sort((a,b)=>pct(a)-pct(b))[0];
+  let rek;
+  if(r.total>=90)rek=`Penguasaan sangat baik. Murid disarankan melanjutkan ke pengayaan: menyusun laporan observasi mandiri tentang objek di lingkungan sekitar (misalnya mangrove Teluk Tomini atau Danau Limboto) lengkap dengan tabel data dan simpulan objektif.`;
+  else if(r.total>=80)rek=`Penguasaan baik. Murid perlu memperdalam ${weakest===3?'penalaran HOTS (menarik simpulan dan memperbaiki desain pengamatan)':weakest===2?'penerapan konsep pada data dan kasus nyata':'pemahaman konsep dasar struktur dan kebahasaan'} melalui latihan tambahan dan diskusi kelompok.`;
+  else if(r.total>=70)rek=`Penguasaan cukup. Murid dianjurkan mengulang materi pada menu Belajar, terutama pembedaan fakta dan opini serta pengolahan data (rata-rata dan persentase), kemudian mengerjakan ulang latihan dengan bimbingan guru.`;
+  else rek=`Murid memerlukan bimbingan intensif. Guru disarankan memberi pendampingan pada konsep dasar (struktur dan kaidah kebahasaan), mengajak murid mengamati objek nyata di lingkungan sekitar, dan mengulang asesmen setelah remedial.`;
+  const kbc=`${esc(S.name)} telah belajar menghadirkan nilai cinta dalam ilmu: <b>cinta kepada Allah dan Rasul</b> melalui perenungan ayat-ayat tentang pengamatan dan tabayyun; <b>cinta sesama</b> melalui kejujuran, adab, dan sikap adil dalam menilai informasi; <b>cinta lingkungan</b> melalui kepedulian pada Teluk Tomini, Danau Limboto, dan lahan pertanian Gorontalo; serta <b>cinta tanah air</b> melalui semangat melaporkan fakta untuk kebaikan bersama. ${pt.total>=70&&r.total>=70?'Pertahankan sikap ilmiah dan akhlak mulia ini.':'Teruslah berlatih dengan sabar; proses belajar yang jujur lebih berharga daripada angka.'}`;
+  const rowsP=S.play.map((p,i)=>`<tr><td>${i+1}</td><td>${p.mech}</td><td>${p.correct}/${p.total}</td><td>${p.pts}/10</td></tr>`).join('');
+  $('#reportDoc').innerHTML=
+   `<div class="rep-kop"><div class="rep-logo">🌸</div><div><h1>LAPORAN HASIL BELAJAR</h1><h2>Media Pembelajaran Interaktif “Teks Laporan Hasil Observasi”</h2><p>Bahasa Indonesia • Kelas X / Fase E • Madrasah Aliyah • Kurikulum Berbasis Cinta</p><p>Pengembang: <b>Yulinda Elfriyanti, S.Pd</b> — MAN 1 Boalemo • yulindaelfryanti1998@gmail.com</p></div></div>
+    <h3>A. Data Murid</h3>
+    <table class="rt"><tr><th>Nama Lengkap</th><td>${esc(S.name)}</td></tr><tr><th>Kelas</th><td>${esc(S.kelas)}</td></tr><tr><th>Tanggal Pengerjaan</th><td>${tgl}</td></tr></table>
+    <h3>B. Rekapitulasi Performa Bermain</h3>
+    <table class="rt"><tr><th>Skor Total</th><td>${pt.total} / 100</td></tr><tr><th>Akurasi</th><td>${pt.acc}%</td></tr><tr><th>Tantangan Sempurna</th><td>${pt.perfect} dari 10</td></tr></table>
+    <table class="rt grid"><tr><th>No</th><th>Jenis Tantangan</th><th>Benar</th><th>Poin</th></tr>${rowsP}</table>
+    <h3>C. Rincian Performa Berlatih</h3>
+    <table class="rt"><tr><th>Nilai Akhir</th><td><b>${r.total}</b> / 100</td></tr><tr><th>Predikat</th><td><b>${pr.p}</b> — ${pr.t}</td></tr></table>
+    <table class="rt grid"><tr><th>Level Soal</th><th>Skor</th><th>Benar</th><th>Penguasaan</th></tr>
+     <tr><td>Level 1 — Dasar/Pemahaman (No. 1–3)</td><td>${L[1].s}/${L[1].m}</td><td>${L[1].c}/${L[1].n}</td><td>${pct(1)}% (${levelStatus(pct(1))})</td></tr>
+     <tr><td>Level 2 — Aplikasi &amp; Penerapan (No. 4–7)</td><td>${L[2].s}/${L[2].m}</td><td>${L[2].c}/${L[2].n}</td><td>${pct(2)}% (${levelStatus(pct(2))})</td></tr>
+     <tr><td>Level 3 — Penalaran HOTS (No. 8–10)</td><td>${L[3].s}/${L[3].m}</td><td>${L[3].c}/${L[3].n}</td><td>${pct(3)}% (${levelStatus(pct(3))})</td></tr></table>
+    <h3>D. Catatan Kurikulum Berbasis Cinta</h3><div class="rep-note">${kbc}</div>
+    <h3>E. Rekomendasi Guru</h3><div class="rep-note">${rek}</div>
+    <div class="sign"><div>Boalemo, ${new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}<br>Pengembang Media,<br><br><br><b>Yulinda Elfriyanti, S.Pd</b><br>MAN 1 Boalemo</div></div>`;
+  $('#pdfMsg').textContent='';
+}
+sendQuestionBank();
+$('#btnPrint').onclick=()=>window.print();
+$('#btnPdf').onclick=()=>{
+  const msg=$('#pdfMsg');
+  if(typeof window.html2pdf==='undefined'){msg.textContent='Pustaka PDF belum termuat (perangkat offline). Membuka dialog cetak — pilih “Simpan sebagai PDF”.';setTimeout(()=>window.print(),400);return;}
+  msg.textContent='Menyiapkan PDF…';
+  const nm=('Laporan_MPI_'+S.name.replace(/[^\w]+/g,'_')).slice(0,60)+'.pdf';
+  try{
+    window.html2pdf().set({margin:[10,10,10,10],filename:nm,image:{type:'jpeg',quality:.96},html2canvas:{scale:2,useCORS:true,scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}}).from($('#reportDoc')).save()
+     .then(()=>{msg.textContent='PDF berhasil dibuat ✔';}).catch(()=>{msg.textContent='Gagal membuat PDF. Membuka dialog cetak…';window.print();});
+  }catch(err){msg.textContent='Gagal membuat PDF. Membuka dialog cetak…';window.print();}
+};
+})();
+</script>
+</body>
+</html>
